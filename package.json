@@ -6,7 +6,13 @@
   "repository": "https://github.com/awfulaxolotl/arbitrary",
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
+  "scripts": {
+    "develop": "concurrently 'tsc --watch' 'ava --watch'",
+    "test": "tsc && ava"
+  },
   "devDependencies": {
+    "ava": "^0.23.0",
+    "concurrently": "^3.5.0",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1"
   }
