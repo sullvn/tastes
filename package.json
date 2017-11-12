@@ -1,0 +1,13 @@
+{
+  "name": "arbitrary",
+  "version": "0.0.0",
+  "description": "Generate arbitrary data with control",
+  "main": "index.js",
+  "repository": "https://github.com/awfulaxolotl/arbitrary",
+  "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  }
+}
