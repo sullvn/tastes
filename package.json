@@ -8,12 +8,18 @@
   "license": "MIT",
   "scripts": {
     "develop": "concurrently 'tsc --watch' 'ava --watch'",
-    "test": "tsc && ava"
+    "test": "tsc && ava",
+    "repl": "ts-node"
   },
   "devDependencies": {
+    "@types/ramda": "^0.25.5",
     "ava": "^0.23.0",
     "concurrently": "^3.5.0",
+    "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "ramda": "^0.25.0"
   }
 }
