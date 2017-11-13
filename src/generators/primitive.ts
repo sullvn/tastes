@@ -62,15 +62,13 @@ export function record<T, K extends keyof T>( shape: ArbitraryValues<T> ): Arbit
 }
 
 
-export function oneOf( ...options: Arbitrary<any>[] ): Arbitrary<any> {
+export function sample<T>( options: T[]): Arbitrary<T> {
   const choiceProbability = 1 / options.length
 
   return n => {
     const choice = Math.floor( n / choiceProbability )
-    const cumulativeChoiceProbability = choice * choiceProbability
-    const m = (n - cumulativeChoiceProbability) / choiceProbability
 
-    return options[ choice ]( m )
+    return options[ choice ]
   }
 }
 
