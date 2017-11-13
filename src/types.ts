@@ -28,8 +28,8 @@ export interface Arbitrary<T> {
  * 
  * Any function which creates arbitrary generator functions.
  */
-export interface ArbitraryType {
-  (...args: any[]): Arbitrary<any>
+export interface ArbitraryType<T> {
+  (...args: any[]): Arbitrary<T>
 }
 
 
