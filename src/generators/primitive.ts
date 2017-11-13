@@ -76,3 +76,25 @@ export function sample<T>( options: T[]): Arbitrary<T> {
 export function boolean(): Arbitrary<boolean> {
   return n => n > 0.5
 }
+
+
+export function string( options?: StringOptions ): Arbitrary<string> {
+  const {
+    alphabet = ALPHANUMERIC_ALPHABET,
+  } = options || {}
+
+  const characters = alphabet.split( '' )
+  const arbitraryCharacters = array( sample( characters ))
+
+  return n => arbitraryCharacters( n ).join( '' )
+}
+
+interface StringOptions {
+  alphabet: string
+}
+
+const ALPHANUMERIC_ALPHABET = `
+abcdefghijklmnopqrstuvwxyz\
+ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+0123456789
+`
