@@ -31,3 +31,13 @@ export interface Arbitrary<T> {
 export interface ArbitraryType {
   (...args: any[]): Arbitrary<any>
 }
+
+
+/**
+ * ## Arbitrary Values
+ *
+ * Any object which exclusively has arbitrary generators for values.
+ */
+export type ArbitraryValues<T> = {
+  [K in keyof T]: Arbitrary<T[K]>
+}

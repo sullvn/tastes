@@ -1,7 +1,7 @@
-import { range } from 'ramda'
+import { range, zipObj } from 'ramda'
 
 import lcg from '../lcg'
-import { Arbitrary } from '../types'
+import { Arbitrary, ArbitraryValues } from '../types'
 
 
 export function number( options?: NumberOptions ): Arbitrary<number> {
@@ -21,16 +21,16 @@ interface NumberOptions {
 }
 
 
-export function array<T>(element: Arbitrary<T>, options?: ArrayOptions): Arbitrary<T[]> {
+export function array<T>( element: Arbitrary<T>, options?: ArrayOptions ): Arbitrary<T[]> {
   const {
     maxLength = 25,
   } = options || {}
 
   const length = number({ min: 0, max: maxLength })
-  const addElement = ({ xs, m }: { xs: T[], m: number }) => {
-    xs.push( element( m ))
-    return { xs, m: lcg( m ) }
-  }
+  const addElement = ({ xs, m }: { xs: T[], m: number }) => ({
+    xs: [ ...xs, element( m ) ],
+    m: lcg( m ),
+  })
 
   return n => range( 0, length( n )).reduce( addElement, {
       xs: [] as T[],
@@ -40,4 +40,23 @@ export function array<T>(element: Arbitrary<T>, options?: ArrayOptions): Arbitra
 
 interface ArrayOptions {
   maxLength: number
+}
+
+
+export function record<T, K extends keyof T>( shape: ArbitraryValues<T> ): Arbitrary<T> {
+  const keys = Object.keys( shape ) as K[]
+
+  const arbitraryValue = ({ vs, m }: { vs: T[K][], m: number }, key: K ) => ({
+    vs: [ ...vs, shape[ key ]( m ) ],
+    m: lcg( m ),
+  })
+
+  const arbitraryRecord = (n: number) => {
+    const values = keys.reduce( arbitraryValue, { vs: [], m: lcg( n ) }).vs
+    return zipObj( keys, values )
+  }
+
+  // Absolutely assert the type because `zipObj` erases the type
+  // information for keys
+  return arbitraryRecord as any as Arbitrary<T>
 }
