@@ -9,10 +9,7 @@
       "request": "launch",
       "name": "Unit Tests",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "test:simple"
-      ],
+      "runtimeArgs": [ "test" ],
       "port": 9229
     },
     {
