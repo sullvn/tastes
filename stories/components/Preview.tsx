@@ -25,6 +25,7 @@ export default class Preview extends React.Component<PreviewProps, PreviewState>
       <section>
         <input
           type="range"
+          value={ input }
           min={ 0 }
           max={ 1 }
           step={ 0.00001 }

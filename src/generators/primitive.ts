@@ -93,8 +93,8 @@ interface StringOptions {
   alphabet: string
 }
 
-const ALPHANUMERIC_ALPHABET = `
+const ALPHANUMERIC_ALPHABET = `\
 abcdefghijklmnopqrstuvwxyz\
 ABCDEFGHIJKLMNOPQRSTUVWXYZ\
-0123456789
+0123456789\
 `
