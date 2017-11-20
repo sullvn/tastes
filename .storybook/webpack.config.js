@@ -6,7 +6,10 @@ module.exports = function( baseConfig, env ) {
 
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    include: path.resolve( __dirname, '../src' ),
+    include: [
+      path.resolve( __dirname, '../src' ),
+      path.resolve( __dirname, '../stories' ),
+    ],
     loader: require.resolve( 'ts-loader' ),
   })
   config.resolve.extensions.push('.ts', '.tsx')
