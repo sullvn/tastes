@@ -12,7 +12,7 @@ module.exports = function( baseConfig, env ) {
     ],
     loader: require.resolve( 'ts-loader' ),
   })
-  config.resolve.extensions.push('.ts', '.tsx')
+  config.resolve.extensions.unshift( '.ts', '.tsx' )
 
   return config
 }
