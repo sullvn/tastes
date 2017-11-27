@@ -15,7 +15,7 @@ export function number( options?: NumberOptions ): Arbitrary<number> {
   return n => n * range + min
 }
 
-interface NumberOptions {
+export interface NumberOptions {
   min: number
   max: number
 }
@@ -38,7 +38,7 @@ export function array<T>( element: Arbitrary<T>, options?: ArrayOptions ): Arbit
     }).xs
 }
 
-interface ArrayOptions {
+export interface ArrayOptions {
   maxLength: number
 }
 
@@ -89,11 +89,11 @@ export function string( options?: StringOptions ): Arbitrary<string> {
   return n => arbitraryCharacters( n ).join( '' )
 }
 
-interface StringOptions {
+export interface StringOptions {
   alphabet: string
 }
 
-const ALPHANUMERIC_ALPHABET = `\
+export const ALPHANUMERIC_ALPHABET = `\
 abcdefghijklmnopqrstuvwxyz\
 ABCDEFGHIJKLMNOPQRSTUVWXYZ\
 0123456789\

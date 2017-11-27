@@ -1,11 +1,14 @@
 # Dependencies
 /node_modules
 
-# Compiled Typescript
+# Compiled Typescript (development)
 *.js
 *.jsx
 *.js.map
 *.jsx.map
+
+# Compiled Typescript (build)
+/dist
 
 # Include Storybook files
 !/.storybook/*.js

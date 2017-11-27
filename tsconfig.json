@@ -4,7 +4,6 @@
     "target": "es2017",
     "moduleResolution": "node",
     "sourceMap": true,
-    "allowJs": false,
 
     "strict": true,
     "noFallthroughCasesInSwitch": true,

@@ -2,14 +2,15 @@
   "name": "arbitrary",
   "version": "0.0.0",
   "description": "Generate arbitrary data with control",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/awfulaxolotl/arbitrary",
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
   "scripts": {
-    "develop": "concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
+    "develop": "tsc && concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
     "storybook": "start-storybook --port 9001 --config-dir .storybook",
-    "test": "tsc && ava"
+    "test": "tsc && ava",
+    "build": "tsc --project tsconfig.dist.json"
   },
   "devDependencies": {
     "@storybook/react": "^3.2.16",
