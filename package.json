@@ -10,7 +10,9 @@
     "develop": "tsc && concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
     "storybook": "start-storybook --port 9001 --config-dir .storybook",
     "test": "tsc && ava",
-    "build": "tsc --project tsconfig.dist.json"
+    "build": "npm run build:dist && npm run build:docs",
+    "build:dist": "tsc --project tsconfig.dist.json",
+    "build:docs": "build-storybook --config-dir .storybook --output-dir docs"
   },
   "devDependencies": {
     "@storybook/react": "^3.2.16",

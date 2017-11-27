@@ -11,4 +11,7 @@
 /dist
 
 # Include Storybook files
-!/.storybook/*.js
+!/.storybook/**
+
+# Include documentation site
+!/docs/**
