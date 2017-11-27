@@ -7,10 +7,9 @@
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
   "scripts": {
-    "develop": "concurrently 'tsc --watch' 'ava --watch'",
-    "test": "tsc && ava",
-    "repl": "ts-node",
-    "storybook": "start-storybook --port 9001 --config-dir .storybook"
+    "develop": "concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
+    "storybook": "start-storybook --port 9001 --config-dir .storybook",
+    "test": "tsc && ava"
   },
   "devDependencies": {
     "@storybook/react": "^3.2.16",

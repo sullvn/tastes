@@ -3,7 +3,9 @@
 
 # Compiled Typescript
 *.js
+*.jsx
 *.js.map
+*.jsx.map
 
 # Include Storybook files
 !/.storybook/*.js

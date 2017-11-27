@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2015",
+    "module": "es2015",
+    "target": "es2017",
+    "moduleResolution": "node",
     "sourceMap": true,
     "allowJs": false,
 
@@ -11,6 +12,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 
-    "jsx": "react"
+    "jsx": "preserve"
   }
 }
