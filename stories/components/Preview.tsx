@@ -1,47 +1,34 @@
 import * as React from 'react'
-
-import { Arbitrary } from '../../src/types';
-
+import { monospaceFontFamily } from '../../src/components/style'
 
 interface PreviewProps {
-  generator: Arbitrary<any>
+  code: string
+  sample: any
 }
 
-interface PreviewState {
-  input: number
+export default function Preview({ code, sample }: PreviewProps) {
+  return (
+    <div style={previewCSS}>
+      <pre style={codeCSS}>
+        <code style={{ fontFamily: monospaceFontFamily }}>{code}</code>
+      </pre>
+      <pre style={sampleCSS}>
+        <samp style={{ fontFamily: monospaceFontFamily }}>
+          {JSON.stringify(sample, undefined, 2)}
+        </samp>
+      </pre>
+    </div>
+  )
 }
 
+const previewCSS: React.CSSProperties = {
+  display: 'flex',
+}
 
-export default class Preview extends React.Component<PreviewProps, PreviewState> {
-  public state = {
-    input: 0,
-  }
+const codeCSS: React.CSSProperties = {
+  marginRight: '3em',
+}
 
-  public render() {
-    const { generator } = this.props
-    const { input } = this.state
-
-    return (
-      <section>
-        <input
-          type="range"
-          value={ input }
-          min={ 0 }
-          max={ 1 }
-          step={ 0.00001 }
-          onChange={ this.onChange }
-        />
-        <pre>
-          <samp>
-            { JSON.stringify( generator( input ), undefined, 2 ) }
-          </samp>
-        </pre>
-      </section>
-    )
-  }
-
-  private onChange = ( ev: React.ChangeEvent<HTMLInputElement> ) => {
-    const input = ev.target.value
-    this.setState( s => ({ ...s, input }))
-  }
+const sampleCSS: React.CSSProperties = {
+  flexGrow: 1,
 }
