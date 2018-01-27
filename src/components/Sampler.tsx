@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Arbitrary } from '../../src/types'
-import { monospaceFontFamily } from './style'
+import { monospaceFontFamily, padding } from './style'
 
 export interface SamplerProps {
   generator: Arbitrary<any>
@@ -60,6 +60,10 @@ const samplerCSS: React.CSSProperties = {
 
 const inputCSS: React.CSSProperties = {
   display: 'flex',
+  alignItems: 'center',
+  padding,
+  color: 'rgb(100, 100, 100)',
+  backgroundColor: 'rgb(249, 249, 249)',
 }
 
 const numberCSS: React.CSSProperties = {

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { monospaceFontFamily } from '../../src/components/style'
+import { monospaceFontFamily, padding } from '../../src/components/style'
 
 interface PreviewProps {
-  code: string
+  code: React.ReactNode
   sample: any
 }
 
@@ -23,12 +23,21 @@ export default function Preview({ code, sample }: PreviewProps) {
 
 const previewCSS: React.CSSProperties = {
   display: 'flex',
+  flexWrap: 'wrap',
 }
 
 const codeCSS: React.CSSProperties = {
-  marginRight: '3em',
+  flexGrow: 1,
+  margin: 0,
+  padding,
+  color: 'rgb(70, 70, 70)',
+  backgroundColor: 'rgb(242, 242, 242)',
 }
 
 const sampleCSS: React.CSSProperties = {
   flexGrow: 1,
+  margin: 0,
+  padding,
+  color: 'rgb(0, 0, 0)',
+  backgroundColor: 'rgb(234, 234, 234)',
 }

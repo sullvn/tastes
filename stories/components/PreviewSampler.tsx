@@ -21,4 +21,9 @@ export default function PreviewSampler(props: PreviewSamplerProps) {
 
 const previewSamplerCSS: React.CSSProperties = {
   fontSize: '12px',
+  margin: '2em',
+
+  borderRadius: '.2em',
+  overflow: 'hidden',
+  boxShadow: '0 0 4px rgb(0, 0, 0, 0.2)',
 }
