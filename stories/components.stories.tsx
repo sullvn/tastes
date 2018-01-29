@@ -148,7 +148,7 @@ const fontPairExample: ArbitraryExample<FontPair> = {
   })(),
   render({ header, body }) {
     return (
-      <section>
+      <section style={{ maxWidth: '30em' }}>
         <h4 style={header}>Ambystoma Mexicanum</h4>
         <p style={body}>
           The axolotl (/ˈæksəlɒtəl/, from Classical Nahuatl: āxōlōtl
