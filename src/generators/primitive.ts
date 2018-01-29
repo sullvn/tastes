@@ -3,12 +3,8 @@ import { range, zipObj } from 'ramda'
 import lcg from '../lcg'
 import { Arbitrary, ArbitraryValues } from '../types'
 
-
-export function number( options?: NumberOptions ): Arbitrary<number> {
-  const {
-    min = 0,
-    max = 1000,
-  } = options || {}
+export function number(options?: NumberOptions): Arbitrary<number> {
+  const { min = 0, max = 1000 } = options || {}
 
   const range = max - min
 
@@ -20,19 +16,20 @@ export interface NumberOptions {
   max: number
 }
 
-
-export function array<T>( element: Arbitrary<T>, options?: ArrayOptions ): Arbitrary<T[]> {
-  const {
-    maxLength = 25,
-  } = options || {}
+export function array<T>(
+  element: Arbitrary<T>,
+  options?: ArrayOptions,
+): Arbitrary<T[]> {
+  const { maxLength = 25 } = options || {}
 
   const length = number({ min: 0, max: maxLength })
-  const addElement = ({ xs, m }: { xs: T[], m: number }) => ({
-    xs: [ ...xs, element( m ) ],
-    m: lcg( m ),
+  const addElement = ({ xs, m }: { xs: T[]; m: number }) => ({
+    xs: [...xs, element(m)],
+    m: lcg(m),
   })
 
-  return n => range( 0, length( n )).reduce( addElement, {
+  return n =>
+    range(0, length(n)).reduce(addElement, {
       xs: [] as T[],
       m: n,
     }).xs
@@ -42,51 +39,47 @@ export interface ArrayOptions {
   maxLength: number
 }
 
+export function record<T, K extends keyof T>(
+  shape: ArbitraryValues<T>,
+): Arbitrary<T> {
+  const keys = Object.keys(shape) as K[]
 
-export function record<T, K extends keyof T>( shape: ArbitraryValues<T> ): Arbitrary<T> {
-  const keys = Object.keys( shape ) as K[]
-
-  const arbitraryValue = ({ vs, m }: { vs: T[K][], m: number }, key: K ) => ({
-    vs: [ ...vs, shape[ key ]( m ) ],
-    m: lcg( m ),
+  const arbitraryValue = ({ vs, m }: { vs: T[K][]; m: number }, key: K) => ({
+    vs: [...vs, shape[key](m)],
+    m: lcg(m),
   })
 
   const arbitraryRecord = (n: number) => {
-    const values = keys.reduce( arbitraryValue, { vs: [], m: lcg( n ) }).vs
-    return zipObj( keys, values )
+    const values = keys.reduce(arbitraryValue, { vs: [], m: lcg(n) }).vs
+    return zipObj(keys, values)
   }
 
   // Absolutely assert the type because `zipObj` erases the type
   // information for keys
-  return arbitraryRecord as any as Arbitrary<T>
+  return (arbitraryRecord as any) as Arbitrary<T>
 }
 
-
-export function sample<T>( options: T[]): Arbitrary<T> {
+export function sample<T>(options: T[]): Arbitrary<T> {
   const choiceProbability = 1 / options.length
 
   return n => {
-    const choice = Math.floor( n / choiceProbability )
+    const choice = Math.floor(n / choiceProbability)
 
-    return options[ choice ]
+    return options[choice]
   }
 }
-
 
 export function boolean(): Arbitrary<boolean> {
   return n => n > 0.5
 }
 
+export function string(options?: StringOptions): Arbitrary<string> {
+  const { alphabet = ALPHANUMERIC_ALPHABET } = options || {}
 
-export function string( options?: StringOptions ): Arbitrary<string> {
-  const {
-    alphabet = ALPHANUMERIC_ALPHABET,
-  } = options || {}
+  const characters = alphabet.split('')
+  const arbitraryCharacters = array(sample(characters))
 
-  const characters = alphabet.split( '' )
-  const arbitraryCharacters = array( sample( characters ))
-
-  return n => arbitraryCharacters( n ).join( '' )
+  return n => arbitraryCharacters(n).join('')
 }
 
 export interface StringOptions {
