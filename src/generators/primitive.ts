@@ -47,13 +47,11 @@ export function record<T, K extends keyof T>(
 ): Arbitrary<T> {
   const keys = Object.keys(shape) as K[]
 
-  const arbitraryValue = ({ vs, m }: { vs: T[K][]; m: number }, key: K) => ({
-    vs: [...vs, shape[key](m)],
-    m: lcg(m),
-  })
+  const arbitraryValue = (n: number) => (key: K, index: number) =>
+    shape[key]((n * (index + 1)) % 1)
 
   const arbitraryRecord = (n: number) => {
-    const values = keys.reduce(arbitraryValue, { vs: [], m: lcg(n) }).vs
+    const values = keys.map(arbitraryValue(n))
     return zipObj(keys, values)
   }
 
