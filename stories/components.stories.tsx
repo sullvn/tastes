@@ -16,17 +16,19 @@ function cardSamples(count?: number) {
     title: string(),
     text: string(),
     list: array(string()),
-    imageWidth: compose(Math.floor, number({ min: 50, max: 1000 })),
-    imageHeight: compose(Math.floor, number({ min: 50, max: 1000 })),
+    image: record({
+      width: compose(Math.floor, number({ min: 50, max: 1000 })),
+      height: compose(Math.floor, number({ min: 50, max: 1000 })),
+    }),
   })
 
   return (
     <Samples generator={arbitraryCard} count={count}>
-      {({ title, text, list, imageWidth, imageHeight }) => (
+      {({ title, text, list, image }) => (
         <Card>
           <h4>{title}</h4>
           <img
-            src={`http://placekitten.com/g/${imageWidth}/${imageHeight}`}
+            src={`http://placekitten.com/g/${image.width}/${image.height}`}
             style={{
               maxWidth: '100%',
               maxHeight: '10em',
