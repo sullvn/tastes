@@ -3,7 +3,7 @@ import { range } from 'ramda'
 
 import { Arbitrary } from '../index'
 
-interface SamplesProps {
+export interface SamplesProps {
   children: (arbitrary: any) => React.ReactNode
   generator: Arbitrary<any>
   count?: number
