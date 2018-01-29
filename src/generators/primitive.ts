@@ -3,9 +3,12 @@ import { range, zipObj } from 'ramda'
 import lcg from '../lcg'
 import { Arbitrary, ArbitraryValues } from '../types'
 
+export function constant<T>(value: T): Arbitrary<T> {
+  return () => value
+}
+
 export function number(options?: NumberOptions): Arbitrary<number> {
   const { min = 0, max = 1000 } = options || {}
-
   const range = max - min
 
   return n => n * range + min
