@@ -1,19 +1,10 @@
 import * as React from 'react'
-
-import { Arbitrary } from '../../src/types'
+import { Arbitrary } from 'src'
 import { monospaceFontFamily, padding } from './style'
 
-export interface SamplerProps {
-  generator: Arbitrary<any>
-  children: (sample: any, point: number) => React.ReactNode
-  style?: React.CSSProperties
-  className?: string
-}
-
-export interface SamplerState {
-  point: number
-}
-
+/**
+ * Render arbitrary samples in realtime with an interactive slider.
+ */
 export default class Sampler extends React.Component<
   SamplerProps,
   SamplerState
@@ -51,6 +42,25 @@ export default class Sampler extends React.Component<
     const point = ev.target.value
     this.setState(s => ({ ...s, point: parseFloat(point) }))
   }
+}
+
+export interface SamplerProps {
+  /**
+   * Arbitrary generator to render in the sampler
+   */
+  generator: Arbitrary<any>
+
+  /**
+   * Renderer of samples to React nodes
+   */
+  children: (sample: any, point: number) => React.ReactNode
+
+  style?: React.CSSProperties
+  className?: string
+}
+
+export interface SamplerState {
+  point: number
 }
 
 const samplerCSS: React.CSSProperties = {

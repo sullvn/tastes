@@ -11,5 +11,6 @@
         "**/*.map": {
             "when": "$(basename).map"
         } 
-    }
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
 }

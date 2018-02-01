@@ -1,14 +1,12 @@
 import * as React from 'react'
 import { range } from 'ramda'
+import { Arbitrary } from 'src'
 
-import { Arbitrary } from '../index'
-
-export interface SamplesProps {
-  children: (arbitrary: any) => React.ReactNode
-  generator: Arbitrary<any>
-  count?: number
-}
-
+/**
+ * Render numerous samples at once.
+ *
+ * @param props React props
+ */
 export default function Samples(props: SamplesProps) {
   const { children, generator, count = 20 } = props
 
@@ -23,6 +21,23 @@ export default function Samples(props: SamplesProps) {
       ))}
     </ul>
   )
+}
+
+export interface SamplesProps {
+  /**
+   * Renderer of arbitrary data to React
+   */
+  children: (arbitrary: any) => React.ReactNode
+
+  /**
+   * Aribtrary generator to sample from
+   */
+  generator: Arbitrary<any>
+
+  /**
+   * Number of samples to render
+   */
+  count?: number
 }
 
 const samplesCSS: React.CSSProperties = {
