@@ -1,5 +1,6 @@
 # Dependencies
 /node_modules
+/yarn-error.log
 
 # Compiled Typescript (development)
 *.js
