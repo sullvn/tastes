@@ -22,13 +22,13 @@ export default class Sampler extends React.Component<
     return (
       <div style={{ ...samplerCSS, ...style }} className={className}>
         <div style={inputCSS}>
-          <span style={numberCSS}>{point.toFixed(5)}</span>
+          <span style={numberCSS}>{point.toFixed(8)}</span>
           <input
             type="range"
             value={point}
             min={0}
-            max={1}
-            step={0.00001}
+            max={0.99999999}
+            step={0.00000001}
             onChange={this.onChange}
             style={sliderCSS}
           />

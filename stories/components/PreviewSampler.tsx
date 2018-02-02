@@ -13,7 +13,7 @@ export default function PreviewSampler(props: PreviewSamplerProps) {
   return (
     <Sampler generator={generator} style={previewSamplerCSS}>
       {(sample, point) => (
-        <Preview code={code(point.toFixed(5))} sample={sample} />
+        <Preview code={code(point.toFixed(8))} sample={sample} />
       )}
     </Sampler>
   )
