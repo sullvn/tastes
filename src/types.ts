@@ -18,8 +18,23 @@
  *     arbitrary(m) <= arbitrary(n) when m <= n
  *
  */
-export interface Arbitrary<T> {
-  (id: number): T
+export interface Arbitrary<T> extends Generator<T> {
+  /**
+   * Count of nested arbitrary generators embedded
+   * within.
+   *
+   * Used to provide full coverage of all generators
+   * regardless of where they are in the generator tree.
+   */
+  readonly leaves: number
+}
+
+/**
+ * Call signature to produce an arbitrary value from
+ * the number point, where 0 <= point < 1
+ */
+export interface Generator<T> {
+  (point: number): T
 }
 
 /**

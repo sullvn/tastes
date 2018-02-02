@@ -1,4 +1,5 @@
 import { Arbitrary } from 'src'
+import create from 'src/create'
 
 /**
  * Arbitrary sample of specified options.
@@ -7,10 +8,11 @@ import { Arbitrary } from 'src'
  */
 export default function sample<T>(options: T[]): Arbitrary<T> {
   const choiceProbability = 1 / options.length
+  const leaves = 1
 
-  return n => {
+  return create(n => {
     const choice = Math.floor(n / choiceProbability)
 
     return options[choice]
-  }
+  }, leaves)
 }

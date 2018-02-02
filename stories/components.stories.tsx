@@ -1,12 +1,19 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { compose } from 'ramda'
 
-import Samples from '../src/components/Samples'
-import Sampler from '../src/components/Sampler'
-import Card from './components/Card'
-import GradientSwatch from './components/GradientSwatch'
-import { array, string, record, number, sample, Arbitrary } from '../src'
+import {
+  array,
+  string,
+  record,
+  number,
+  sample,
+  compose,
+  Arbitrary,
+  Samples,
+  Sampler,
+} from 'src'
+import Card from 'stories/components/Card'
+import GradientSwatch from 'stories/components/GradientSwatch'
 
 storiesOf('Samples', module)
   .add('of 500 gradients', () => (

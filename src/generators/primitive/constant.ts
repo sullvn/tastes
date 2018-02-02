@@ -1,4 +1,5 @@
 import { Arbitrary } from 'src'
+import create from 'src/create'
 
 /**
  * A constant value which disregards arbitrary inputs.
@@ -9,5 +10,5 @@ import { Arbitrary } from 'src'
  * @param value Value to be always returned
  */
 export default function constant<T>(value: T): Arbitrary<T> {
-  return () => value
+  return create(() => value, 0)
 }

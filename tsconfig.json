@@ -4,7 +4,6 @@
     "target": "es2017",
     "moduleResolution": "node",
     "baseUrl": ".",
-    "sourceMap": true,
 
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -12,6 +11,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 
-    "jsx": "preserve"
-  }
+    "jsx": "preserve",
+    "sourceMap": true
+  },
+  "exclude": ["src/**/*.jsx?", "stories/**/*.jsx?", "test/**/*.jsx?"]
 }

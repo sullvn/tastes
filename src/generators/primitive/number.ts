@@ -1,4 +1,5 @@
 import { Arbitrary } from 'src'
+import create from 'src/create'
 
 /**
  * Arbitrary numbers to generate.
@@ -11,8 +12,9 @@ import { Arbitrary } from 'src'
 export default function number(options?: NumberOptions): Arbitrary<number> {
   const { min = 0, max = 1000 } = options || {}
   const range = max - min
+  const leaves = 1
 
-  return n => n * range + min
+  return create(n => n * range + min, leaves)
 }
 
 export interface NumberOptions {
