@@ -1,5 +1,5 @@
-import { Arbitrary } from 'src'
-import create from 'src/create'
+import { Arbitrary } from '../..'
+import create from '../../create'
 
 /**
  * Arbitrary boolean

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Arbitrary } from 'src'
+import { Arbitrary } from '..'
 import { monospaceFontFamily, padding } from './style'
 
 /**

@@ -1,4 +1,4 @@
-import { Arbitrary, Generator } from 'src'
+import { Arbitrary, Generator } from '.'
 
 /**
  * Create arbitrary from a generator and other metadata.

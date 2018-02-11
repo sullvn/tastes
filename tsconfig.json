@@ -11,7 +11,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 
-    "jsx": "preserve",
+    "jsx": "react",
     "sourceMap": true
   },
   "exclude": ["src/**/*.jsx?", "stories/**/*.jsx?", "test/**/*.jsx?"]

@@ -1,5 +1,5 @@
-import { Arbitrary } from 'src'
-import create from 'src/create'
+import { Arbitrary } from '..'
+import create from '../create'
 
 /**
  * Compose a function onto an arbitrary function, changing its output shape.

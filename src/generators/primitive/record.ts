@@ -1,7 +1,7 @@
 import { sum, zipObj, zipWith } from 'ramda'
-import { Arbitrary, ArbitraryValues } from 'src'
-import create from 'src/create'
-import vector from 'src/generators/vector'
+import { Arbitrary, ArbitraryValues } from '../..'
+import create from '../../create'
+import vector from '../vector'
 
 /**
  * Arbitrary objects with a specific shape.

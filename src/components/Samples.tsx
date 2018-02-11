@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { range } from 'ramda'
-import { Arbitrary } from 'src'
+import { Arbitrary } from '..'
 
 /**
  * Render numerous samples at once.

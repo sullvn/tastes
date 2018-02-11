@@ -1,5 +1,5 @@
-import { Arbitrary, array, sample } from 'src'
-import create from 'src/create'
+import { Arbitrary, array, sample } from '../..'
+import create from '../../create'
 
 /**
  * An arbitrary string.

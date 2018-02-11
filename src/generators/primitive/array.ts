@@ -1,7 +1,7 @@
 import { repeat } from 'ramda'
-import { Arbitrary, number, compose } from 'src'
-import create from 'src/create'
-import vector from 'src/generators/vector'
+import { Arbitrary, number, compose } from '../..'
+import create from '../../create'
+import vector from '../vector'
 
 /**
  * An arbitrary array with arbitrary elements. Expands
