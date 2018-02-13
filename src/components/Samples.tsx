@@ -1,9 +1,15 @@
 import * as React from 'react'
 import { range } from 'ramda'
+import { View, StyleSheet } from 'react-primitives'
 import { Arbitrary } from '..'
 
 /**
  * Render numerous samples at once.
+ *
+ * Usable with React, React Native, React Sketchapp,
+ * and wherever else [React Primitives][react-primitives] can be used.
+ *
+ * [react-primitives]: https://github.com/lelandrichardson/react-primitives
  *
  * @param props React props
  */
@@ -13,13 +19,13 @@ export default function Samples(props: SamplesProps) {
   const points = range(0, count - 1).map(n => n / count)
 
   return (
-    <ul style={samplesCSS}>
+    <View style={styles.samples}>
       {points.map((p, i) => (
-        <li key={i} style={sampleCSS}>
+        <View key={i} style={styles.sample}>
           {children(generator(p))}
-        </li>
+        </View>
       ))}
-    </ul>
+    </View>
   )
 }
 
@@ -40,12 +46,13 @@ export interface SamplesProps {
   count?: number
 }
 
-const samplesCSS: React.CSSProperties = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  listStyle: 'none',
-}
-
-const sampleCSS: React.CSSProperties = {
-  margin: '.5em',
-}
+const styles = StyleSheet.create({
+  samples: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  sample: {
+    margin: '.5em',
+  },
+})

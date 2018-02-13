@@ -1,8 +1,16 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { Arbitrary, boolean, sample, array, number, record, string } from 'src'
-import PreviewSampler from 'stories/components/PreviewSampler'
+import {
+  Arbitrary,
+  boolean,
+  sample,
+  array,
+  number,
+  record,
+  string,
+} from '../src'
+import PreviewSampler from './components/PreviewSampler'
 
 storiesOf('number', module)
   .add('with default settings', () => (

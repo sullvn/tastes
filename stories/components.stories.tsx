@@ -11,9 +11,9 @@ import {
   Arbitrary,
   Samples,
   Sampler,
-} from 'src'
-import Card from 'stories/components/Card'
-import GradientSwatch from 'stories/components/GradientSwatch'
+} from '../src'
+import Card from '../stories/components/Card'
+import GradientSwatch from '../stories/components/GradientSwatch'
 
 storiesOf('Samples', module)
   .add('of 500 gradients', () => (
@@ -102,12 +102,14 @@ const cardExample: ArbitraryExample<Card> = {
       <Card>
         <h4>{title}</h4>
         <img
-          src={`http://placekitten.com/g/${image.width}/${image.height}`}
           style={{
+            width: `${image.width}px`,
+            height: `${image.height}px`,
             maxWidth: '100%',
             maxHeight: '10em',
             display: 'block',
             margin: '0 auto',
+            background: '#acc',
           }}
         />
         <p>{text}</p>
