@@ -16,8 +16,8 @@ import Card from '../stories/components/Card'
 import GradientSwatch from '../stories/components/GradientSwatch'
 
 storiesOf('Samples', module)
-  .add('of 500 gradients', () => (
-    <Samples generator={gradientExample.generator} count={500}>
+  .add('of 50 gradients', () => (
+    <Samples generator={gradientExample.generator} count={50}>
       {gradientExample.render}
     </Samples>
   ))
