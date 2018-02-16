@@ -15,6 +15,30 @@ Useful for navigating space of possibilities for your data, code, and ideas. The
 
 ## Examples
 
+### Generative Designs in Sketch
+
+Want to see your design in many fonts, colors, content, styles, and layouts? Arbitrary and React Sketchapp have got you!
+
+[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/examples/react-sketchapp/src/example.js)
+
+![Sketch example](https://i.imgur.com/De7dSUr.png)
+
+### Storybook
+
+Use React Storybook to offer interactive documentation and generated examples!
+
+[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/stories/components.stories.tsx)
+
+![Storybook example](https://media.giphy.com/media/cftt7oANbJpwmG86D4/giphy.gif)
+
+### React Development
+
+Visually test your app as you code with live tweaking.
+
+[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/examples/react/pages/index.js)
+
+![React example](https://media.giphy.com/media/4blbf3ycx6sY7GRxzt/giphy.gif)
+
 ### Random Values
 
 Use with [`Math.random`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get unpredictable values:
@@ -29,22 +53,6 @@ const samplePosition = record({
 
 const randomPosition = samplePosition(Math.random())
 ```
-
-### React Development
-
-Visually test your app as you code with live tweaking.
-
-[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/examples/react/pages/index.js)
-
-![React example](https://media.giphy.com/media/4blbf3ycx6sY7GRxzt/giphy.gif)
-
-### Storybook
-
-Use React Storybook to offer interactive documentation and generated examples!
-
-[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/stories/components.stories.tsx)
-
-![Storybook example](https://media.giphy.com/media/cftt7oANbJpwmG86D4/giphy.gif)
 
 ### Property-based Testing
 
@@ -73,14 +81,6 @@ for (let i = 0; i < 10000; i++) {
 ```
 
 Please note that actual property-based testing libraries, such as [jsverify](https://github.com/jsverify/jsverify), offer better coverage and confidence. With that said, Arbitrary can still be useful for quick sanity checks due its incredibly minimal API.
-
-### Generative Designs in Sketch
-
-Want to see your design in many fonts, colors, content, styles, and layouts? Arbitrary and React Sketchapp have got you!
-
-[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/examples/react-sketchapp/src/example.js)
-
-![Sketch example](https://i.imgur.com/De7dSUr.png)
 
 ## Why Not Random?
 
