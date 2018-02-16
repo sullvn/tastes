@@ -4,3 +4,5 @@
 
 # Generated Sketch plugin
 /*.sketchplugin
+
+!**/*.js

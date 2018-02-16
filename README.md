@@ -17,7 +17,7 @@ Useful for navigating space of possibilities for your data, code, and ideas. The
 
 ### Random Values
 
-Use with `Math.random` to get unpredictable values:
+Use with [`Math.random`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get unpredictable values:
 
 ```js
 import { number, record } from 'arbitrary'
@@ -34,9 +34,17 @@ const randomPosition = samplePosition(Math.random())
 
 Visually test your app as you code with live tweaking.
 
+[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/examples/react/pages/index.js)
+
+![React example](https://media.giphy.com/media/4blbf3ycx6sY7GRxzt/giphy.gif)
+
 ### Storybook
 
 Use React Storybook to offer interactive documentation and generated examples!
+
+[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/stories/components.stories.tsx)
+
+![Storybook example](https://media.giphy.com/media/cftt7oANbJpwmG86D4/giphy.gif)
 
 ### Property-based Testing
 
@@ -69,6 +77,10 @@ Please note that actual property-based testing libraries, such as [jsverify](htt
 ### Generative Designs in Sketch
 
 Want to see your design in many fonts, colors, content, styles, and layouts? Arbitrary and React Sketchapp have got you!
+
+[Example Code](https://github.com/awfulaxolotl/arbitrary/blob/master/examples/react-sketchapp/src/example.js)
+
+![Sketch example](https://i.imgur.com/De7dSUr.png)
 
 ## Why Not Random?
 

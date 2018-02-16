@@ -4,3 +4,5 @@
 
 # Next.js cache
 /.next
+
+!**/*.js
