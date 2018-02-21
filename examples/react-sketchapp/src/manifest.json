@@ -3,15 +3,13 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Arbitrary React Sketchapp Example",
+      "name": "Tastes + React Sketchapp Example",
       "identifier": "main",
       "script": "./example.js"
     }
   ],
   "menu": {
     "isRoot": true,
-    "items": [
-      "main"
-    ]
+    "items": ["main"]
   }
 }

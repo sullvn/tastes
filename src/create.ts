@@ -1,25 +1,25 @@
-import { Arbitrary, Generator } from '.'
+import { Sampler, SamplerFn } from '.'
 
 /**
- * Create arbitrary from a generator and other metadata.
+ * Create sampler from a sampler function and other metadata.
  *
- * @param generator Arbitrary generator function
- * @param leaves Number of generators nested within the generator passed
+ * @param fn Sampler function
+ * @param leaves Number of nested samplers within the sampler function
  */
-export default function createArbitrary<T>(
-  generator: Generator<T>,
+export default function createSampler<T>(
+  fn: SamplerFn<T>,
   leaves: number,
-): Arbitrary<T> {
-  const arbitrary = generator as WeakArbitrary<T>
-  arbitrary.leaves = leaves
+): Sampler<T> {
+  const sampler = fn as WeakSampler<T>
+  sampler.leaves = leaves
 
-  return arbitrary as Arbitrary<T>
+  return sampler as Sampler<T>
 }
 
 /**
- * A nullable, writeable version of Arbitrary
+ * A nullable, writeable version of Sampler
  * for use during construction.
  */
-interface WeakArbitrary<T> extends Generator<T> {
+interface WeakSampler<T> extends SamplerFn<T> {
   leaves?: number
 }

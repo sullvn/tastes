@@ -1,5 +1,5 @@
 {
-  "name": "arbitrary-react-example",
+  "name": "tastes-react-example",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,7 +7,7 @@
     "next": "^5.0.1-canary.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "arbitrary": "file:../../"
+    "tastes": "file:../../"
   },
   "scripts": {
     "dev": "next",

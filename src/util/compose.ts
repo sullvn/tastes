@@ -1,19 +1,19 @@
-import { Arbitrary } from '..'
+import { Sampler } from '..'
 import create from '../create'
 
 /**
- * Compose a function onto an arbitrary function, changing its output shape.
+ * Compose a function onto a sampler, changing its output shape
  *
- * @param fn Function to apply to the arbitrary result
- * @param arbitrary Arbitrary generator to compose `fn` onto
+ * @param fn Function to apply to each sample
+ * @param sampler Sampler to compose `fn` onto
  */
 export default function compose<T, U>(
   fn: (a: T) => U,
-  arbitrary: Arbitrary<T>,
-): Arbitrary<U> {
+  sampler: Sampler<T>,
+): Sampler<U> {
   const gen = (p: number) => {
-    return fn(arbitrary(p))
+    return fn(sampler(p))
   }
 
-  return create(gen, arbitrary.leaves)
+  return create(gen, sampler.leaves)
 }

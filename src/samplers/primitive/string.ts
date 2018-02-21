@@ -1,20 +1,20 @@
-import { Arbitrary, array, sample } from '../..'
+import { Sampler, array, choice } from '../..'
 import create from '../../create'
 
 /**
- * An arbitrary string.
+ * Sampler for strings
  *
  * @param options Configuration for how strings are generated.
  */
-export default function string(options?: StringOptions): Arbitrary<string> {
+export default function string(options?: StringOptions): Sampler<string> {
   const { alphabet = ALPHANUMERIC_ALPHABET } = options || {}
 
   const characters = alphabet.split('')
-  const arbitraryCharacters = array(sample(characters))
+  const charactersSampler = array(choice(characters))
 
   return create(
-    (point: number) => arbitraryCharacters(point).join(''),
-    arbitraryCharacters.leaves,
+    (point: number) => charactersSampler(point).join(''),
+    charactersSampler.leaves,
   )
 }
 

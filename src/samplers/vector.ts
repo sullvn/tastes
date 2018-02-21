@@ -1,13 +1,13 @@
-import { Arbitrary } from '..'
+import { Sampler } from '..'
 import create from '../create'
 
 /**
- * An arbitrary vector
+ * Sampler for vectors
  *
- * Samples the full range of vectors in an arbitrary-dimension. Uses weights to
+ * Samples the full range of vectors in an arbitrary dimension. Uses weights to
  * decide how fast to modulate subsequent components in the vector.
  *
- * This is designed for purely internal use by this library. It's used for arbitrary
+ * This is designed for purely internal use by this library. It's used for sampler
  * types which have independent subgenerators. A vector allows the parent generator
  * to project the input point into its subcomponents, covering as many
  * possibilities as possible.
@@ -21,7 +21,7 @@ import create from '../create'
  *
  * @param weights Weights to determine how fast subsequent components are modulated
  */
-export default function vector(weights: number[]): Arbitrary<number[]> {
+export default function vector(weights: number[]): Sampler<number[]> {
   const gen = (p: number) => {
     const init: VectorWeight = { v: [], w: 0 }
     const { v } = weights.reduce(addComponent(p), init)

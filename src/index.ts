@@ -1,3 +1,3 @@
 export * from './types'
-export * from './generators'
+export * from './samplers'
 export * from './util'

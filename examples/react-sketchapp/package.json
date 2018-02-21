@@ -1,8 +1,8 @@
 {
-  "name": "arbitrary-react-sketchapp",
+  "name": "tastes-react-sketchapp",
   "version": "0.0.0",
   "skpm": {
-    "main": "arbitrary-example.sketchplugin",
+    "main": "tastes-example.sketchplugin",
     "manifest": "src/manifest.json"
   },
   "scripts": {
@@ -18,7 +18,7 @@
     "@skpm/builder": "^0.2.0"
   },
   "dependencies": {
-    "arbitrary": "file:../../",
+    "tastes": "file:../../",
     "chroma-js": "^1.2.2",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",

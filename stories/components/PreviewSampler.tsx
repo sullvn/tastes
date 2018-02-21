@@ -1,21 +1,23 @@
 import * as React from 'react'
 
-import Sampler, { SamplerProps } from '../../src/components/Sampler'
+import SamplerSlider, {
+  SamplerSliderProps,
+} from '../../src/components/SamplerSlider'
 import Preview from './Preview'
 
-interface PreviewSamplerProps extends Pick<SamplerProps, 'generator'> {
+interface PreviewSamplerProps extends Pick<SamplerSliderProps, 'sampler'> {
   code: (input: string) => string
 }
 
 export default function PreviewSampler(props: PreviewSamplerProps) {
-  const { code, generator } = props
+  const { code, sampler } = props
 
   return (
-    <Sampler generator={generator} style={previewSamplerCSS}>
+    <SamplerSlider sampler={sampler} style={previewSamplerCSS}>
       {(sample, point) => (
         <Preview code={code(point.toFixed(8))} sample={sample} />
       )}
-    </Sampler>
+    </SamplerSlider>
   )
 }
 

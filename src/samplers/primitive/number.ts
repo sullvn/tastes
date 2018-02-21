@@ -1,15 +1,15 @@
-import { Arbitrary } from '../..'
+import { Sampler } from '../..'
 import create from '../../create'
 
 /**
- * Arbitrary numbers to generate.
+ * Sampler for numbers
  *
  * Returns some numbers within a range. Scales linearly from minimum
  * to maximum with input number.
  *
- * @param options Configurable options for generating arbitrary numbers
+ * @param options Configurable options for number distribution
  */
-export default function number(options?: NumberOptions): Arbitrary<number> {
+export default function number(options?: NumberOptions): Sampler<number> {
   const { min = 0, max = 1000 } = options || {}
   const range = max - min
   const leaves = 1

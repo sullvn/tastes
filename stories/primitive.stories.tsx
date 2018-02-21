@@ -1,15 +1,7 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import {
-  Arbitrary,
-  boolean,
-  sample,
-  array,
-  number,
-  record,
-  string,
-} from '../src'
+import { Sampler, boolean, choice, array, number, record, string } from '../src'
 import PreviewSampler from './components/PreviewSampler'
 
 storiesOf('number', module)
@@ -17,25 +9,25 @@ storiesOf('number', module)
     <PreviewSampler
       code={n =>
         `\
-import { number } from 'arbitrary'
+import { number } from 'tastes'
 
 number()(${n})`
       }
-      generator={number()}
+      sampler={number()}
     />
   ))
   .add('from 0 to 1', () => (
     <PreviewSampler
       code={n =>
         `\
-import { number } from 'arbitary'
+import { number } from 'tastes'
 
 number({
   min: 0,
   max: 1,
 })(${n})`
       }
-      generator={number({
+      sampler={number({
         min: 0,
         max: 1,
       })}
@@ -45,14 +37,14 @@ number({
     <PreviewSampler
       code={n =>
         `\
-import { number } from 'arbitrary'
+import { number } from 'tastes'
 
 number({
   min: -10000,
   max: 10000,
 })(${n})`
       }
-      generator={number({
+      sampler={number({
         min: -10000,
         max: 10000,
       })}
@@ -64,40 +56,40 @@ storiesOf('array', module)
     <PreviewSampler
       code={n =>
         `\
-import { array, number } from 'arbitrary'
+import { array, number } from 'tastes'
 
 array(number())(${n})`
       }
-      generator={array(number())}
+      sampler={array(number())}
     />
   ))
   .add('of numbers, max length of 5', () => (
     <PreviewSampler
       code={n =>
         `\
-import { array, number } from 'arbitrary'
+import { array, number } from 'tastes'
 
 array(number(), { maxLength: 5 })(${n})`
       }
-      generator={array(number(), { maxLength: 5 })}
+      sampler={array(number(), { maxLength: 5 })}
     />
   ))
   .add('of arrays of numbers', () => (
     <PreviewSampler
       code={n =>
         `\
-import { array, number } from 'arbitrary'
+import { array, number } from 'tastes'
 
 array(array(number()))(${n})`
       }
-      generator={array(array(number()))}
+      sampler={array(array(number()))}
     />
   ))
   .add('of records (coordinates)', () => (
     <PreviewSampler
       code={n =>
         `\
-import { array, number, record } from 'arbitrary'
+import { array, number, record } from 'tastes'
 
 array(
   record({
@@ -106,7 +98,7 @@ array(
   }),
 )(${n})`
       }
-      generator={array(
+      sampler={array(
         record({
           latitude: number({ min: -90, max: 90 }),
           longitude: number({ min: -180, max: 180 }),
@@ -120,21 +112,21 @@ storiesOf('record', module)
     <PreviewSampler
       code={n =>
         `\
-import { number, record } from 'arbitrary'
+import { number, record } from 'tastes'
 
 record({
   latitude: number({ min: -90, max: 90 }),
   longitude: number({ min: -180, max: 180 }),
 })(${n})`
       }
-      generator={record({
+      sampler={record({
         latitude: number({ min: -90, max: 90 }),
         longitude: number({ min: -180, max: 180 }),
       })}
     />
   ))
   .add('of depth-four binary tree', () => {
-    const level = (leaf: Arbitrary<any>) =>
+    const level = (leaf: Sampler<any>) =>
       record({
         left: leaf,
         right: leaf,
@@ -144,7 +136,7 @@ record({
       <PreviewSampler
         code={n =>
           `\
-import { number, record } from 'arbitrary'
+import { number, record } from 'tastes'
 
 const level = leaf =>
   record({
@@ -154,32 +146,32 @@ const level = leaf =>
 
 level(level(level(level(number()))))(${n})`
         }
-        generator={level(level(level(level(number()))))}
+        sampler={level(level(level(level(number()))))}
       />
     )
   })
 
-storiesOf('sample', module)
+storiesOf('choice', module)
   .add('of strings', () => (
     <PreviewSampler
       code={n =>
         `\
-import { sample } from 'arbitrary'
+import { choice } from 'tastes'
 
-sample(['penguin', 'rock', 'sailboat', 'love', 'axolotl'])(${n})`
+choice(['penguin', 'rock', 'sailboat', 'love', 'axolotl'])(${n})`
       }
-      generator={sample(['penguin', 'rock', 'sailboat', 'love', 'axolotl'])}
+      sampler={choice(['penguin', 'rock', 'sailboat', 'love', 'axolotl'])}
     />
   ))
   .add('of random types', () => (
     <PreviewSampler
       code={n =>
         `\
-import { sample } from 'arbitrary'
+import { choice } from 'tastes'
 
-sample([10, 'axolotl', null, { x: 30, y: 50 }])(${n})`
+choice([10, 'axolotl', null, { x: 30, y: 50 }])(${n})`
       }
-      generator={sample([10, 'axolotl', null, { x: 30, y: 50 }])}
+      sampler={choice([10, 'axolotl', null, { x: 30, y: 50 }])}
     />
   ))
 
@@ -187,11 +179,11 @@ storiesOf('string', module).add('with default settings', () => (
   <PreviewSampler
     code={n =>
       `\
-import { string } from 'arbitrary'
+import { string } from 'tastes'
 
 string()(${n})`
     }
-    generator={string()}
+    sampler={string()}
   />
 ))
 
@@ -199,10 +191,10 @@ storiesOf('boolean', module).add('with default settings', () => (
   <PreviewSampler
     code={n =>
       `\
-import { boolean } from 'arbitrary'
+import { boolean } from 'tastes'
 
 boolean()(${n})`
     }
-    generator={boolean()}
+    sampler={boolean()}
   />
 ))

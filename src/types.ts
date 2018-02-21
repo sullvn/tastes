@@ -1,54 +1,53 @@
 /**
- * ## Arbitrary
+ * ## Sampler
  *
- * A function which generates an arbitrary instance of a data type given a number.
- * Each number is mapped to a unique instance.
+ * A function which generates an sample of a data type given a number.
+ * Each number is mapped to a unique sample.
  *
  * It has the following guarantees:
  *
  * #### Unique
  *
- * For any numbers `m` and `n`, `arbitrary(m) !== arbitrary(n)`.
+ * For any numbers `m` and `n`, `sampler(m) !== sampler(n)`.
  *
  * #### Locality
  *
  * Closer numbers return more similar instances. In other words, the output
  * domain has a total ordering:
  *
- *     arbitrary(m) <= arbitrary(n) when m <= n
+ *     sampler(m) <= sampler(n) when m <= n
  *
  */
-export interface Arbitrary<T> extends Generator<T> {
+export interface Sampler<T> extends SamplerFn<T> {
   /**
-   * Count of nested arbitrary generators embedded
-   * within.
+   * Count of nested samplers embedded within.
    *
-   * Used to provide full coverage of all generators
-   * regardless of where they are in the generator tree.
+   * Used to provide full coverage of all samplers
+   * regardless of where they are in the sampler tree.
    */
   readonly leaves: number
 }
 
 /**
- * Call signature to produce an arbitrary value from
+ * Call signature to produce an sample value from
  * the number point, where 0 <= point < 1
  */
-export interface Generator<T> {
+export interface SamplerFn<T> {
   (point: number): T
 }
 
 /**
- * ## ArbitraryType
+ * ## SamplerGenerator
  *
- * Any function which creates arbitrary generator functions.
+ * Any function which creates generates samplers.
  */
-export interface ArbitraryType<T> {
-  (...args: any[]): Arbitrary<T>
+export interface SamplerGenerator<T> {
+  (...args: any[]): Sampler<T>
 }
 
 /**
- * ## Arbitrary Values
+ * ## Sampler Values
  *
- * Any object which exclusively has arbitrary generators for values.
+ * Any object which exclusively has samplers for values.
  */
-export type ArbitraryValues<T> = { [K in keyof T]: Arbitrary<T[K]> }
+export type SamplerValues<T> = { [K in keyof T]: Sampler<T[K]> }

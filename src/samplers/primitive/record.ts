@@ -1,22 +1,22 @@
 import { sum, zipObj, zipWith } from 'ramda'
-import { Arbitrary, ArbitraryValues } from '../..'
+import { Sampler, SamplerValues } from '../..'
 import create from '../../create'
 import vector from '../vector'
 
 /**
- * Arbitrary objects with a specific shape.
+ * Sample objects with a specific shape
  *
- * Uses the `vector` generator internally to do decent coverage of the
- * combinations between the independent subgenerators.
+ * Uses the `vector` sampler internally to do decent coverage of the
+ * combinations between the independent samplers.
  *
- * @param shape An object of arbitrary generators as keys. Generated objects
- *              retain this shape with arbitrary data as values.
+ * @param shape An object of samplers as keys. Generated objects
+ *              retain this shape with samples as values.
  */
 export default function record<T, K extends keyof T>(
-  shape: ArbitraryValues<T>,
-): Arbitrary<T> {
+  shape: SamplerValues<T>,
+): Sampler<T> {
   const keys = Object.keys(shape) as K[]
-  const subgens = (keys.map(k => shape[k]) as any) as Arbitrary<T>[]
+  const subgens = (keys.map(k => shape[k]) as any) as Sampler<T>[]
 
   const subleaves = subgens.map(g => g.leaves)
   const leaves = sum(subleaves)

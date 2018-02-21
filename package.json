@@ -1,10 +1,10 @@
 {
-  "name": "arbitrary",
+  "name": "tastes",
   "version": "0.0.0",
-  "description": "Generate arbitrary data with control",
+  "description": "Code and create with generative samples",
   "main": "dist/index.js",
   "files": ["dist"],
-  "repository": "https://github.com/awfulaxolotl/arbitrary",
+  "repository": "https://github.com/awfulaxolotl/tastes",
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
   "scripts": {

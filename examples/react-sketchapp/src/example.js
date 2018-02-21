@@ -2,17 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { render, Artboard, Text, View } from 'react-sketchapp'
 import chroma from 'chroma-js'
-import { Samples, record, number, constant } from 'arbitrary'
 
-const arbitraryHsl = record({
+import { record, number, constant } from 'tastes'
+import { SamplesList } from 'tastes/dist/components'
+
+const hsl = record({
   h: number({ min: 0, max: 360 }),
   s: constant(0.6),
   l: constant(0.5),
 })
 
-const arbitraryScale = record({
-  left: arbitraryHsl,
-  right: arbitraryHsl,
+const scale = record({
+  left: hsl,
+  right: hsl,
 })
 
 function Scale({ index, left, right }) {
@@ -59,9 +61,9 @@ function Document() {
         flexWrap: 'wrap',
       }}
     >
-      <Samples count={60} generator={arbitraryScale}>
+      <SamplesList count={60} sampler={scale}>
         {({ left, right }) => <Scale index={0.5} left={left} right={right} />}
-      </Samples>
+      </SamplesList>
     </Artboard>
   )
 }

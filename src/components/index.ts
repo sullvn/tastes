@@ -1,2 +1,2 @@
-export { default as Sampler } from './Sampler'
-export { default as Samples } from './Samples'
+export { default as SamplerSlider } from './SamplerSlider'
+export { default as SamplesList } from './SamplesList'

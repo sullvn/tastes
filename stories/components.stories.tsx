@@ -1,54 +1,48 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import {
-  array,
-  string,
-  record,
-  number,
-  sample,
-  compose,
-  Arbitrary,
-} from '../src'
-import { Samples, Sampler } from '../src/components'
+import { array, string, record, number, choice, compose, Sampler } from '../src'
+import { SamplesList, SamplerSlider } from '../src/components'
 import Card from '../stories/components/Card'
 import GradientSwatch from '../stories/components/GradientSwatch'
 
-storiesOf('Samples', module)
+storiesOf('SamplesList', module)
   .add('of 50 gradients', () => (
-    <Samples generator={gradientExample.generator} count={50}>
+    <SamplesList sampler={gradientExample.sampler} count={50}>
       {gradientExample.render}
-    </Samples>
+    </SamplesList>
   ))
   .add('of 100 cards', () => (
-    <Samples generator={cardExample.generator} count={500}>
+    <SamplesList sampler={cardExample.sampler} count={500}>
       {cardExample.render}
-    </Samples>
+    </SamplesList>
   ))
   .add('of 200 font pairs', () => (
-    <Samples generator={fontPairExample.generator} count={200}>
+    <SamplesList sampler={fontPairExample.sampler} count={200}>
       {fontPairExample.render}
-    </Samples>
+    </SamplesList>
   ))
 
-storiesOf('Sampler', module)
+storiesOf('SamplerSlider', module)
   .add('of gradients', () => (
-    <Sampler generator={gradientExample.generator}>
+    <SamplerSlider sampler={gradientExample.sampler}>
       {gradientExample.render}
-    </Sampler>
+    </SamplerSlider>
   ))
   .add('of cards', () => (
-    <Sampler generator={cardExample.generator}>{cardExample.render}</Sampler>
+    <SamplerSlider sampler={cardExample.sampler}>
+      {cardExample.render}
+    </SamplerSlider>
   ))
   .add('of font pairs', () => (
-    <Sampler generator={fontPairExample.generator}>
+    <SamplerSlider sampler={fontPairExample.sampler}>
       {fontPairExample.render}
-    </Sampler>
+    </SamplerSlider>
   ))
 
-interface ArbitraryExample<T> {
-  generator: Arbitrary<T>
-  render: (arbitrary: T) => React.ReactNode
+interface SamplerExample<T> {
+  sampler: Sampler<T>
+  render: (sample: T) => React.ReactNode
 }
 
 interface Gradient {
@@ -56,12 +50,12 @@ interface Gradient {
   rightHue: number
 }
 
-const gradientExample: ArbitraryExample<Gradient> = {
-  generator: (function() {
-    const arbitraryHue = number({ min: 0, max: 360 })
+const gradientExample: SamplerExample<Gradient> = {
+  sampler: (function() {
+    const hue = number({ min: 0, max: 360 })
     return record({
-      leftHue: arbitraryHue,
-      rightHue: arbitraryHue,
+      leftHue: hue,
+      rightHue: hue,
     })
   })(),
   render({ leftHue, rightHue }) {
@@ -86,8 +80,8 @@ interface Card {
   }
 }
 
-const cardExample: ArbitraryExample<Card> = {
-  generator: record({
+const cardExample: SamplerExample<Card> = {
+  sampler: record({
     title: string(),
     text: string(),
     list: array(string()),
@@ -128,12 +122,12 @@ interface FontPair {
   body: Font
 }
 
-const fontPairExample: ArbitraryExample<FontPair> = {
-  generator: (function() {
-    const arbitraryFont = ({ min, max }: { min: number; max: number }) =>
+const fontPairExample: SamplerExample<FontPair> = {
+  sampler: (function() {
+    const font = ({ min, max }: { min: number; max: number }) =>
       record({
-        fontWeight: sample(['normal', 'bold']) as Arbitrary<'normal' | 'bold'>,
-        fontFamily: sample([
+        fontWeight: choice(['normal', 'bold']) as Sampler<'normal' | 'bold'>,
+        fontFamily: choice([
           'Georgia',
           '"Palatino Linotype"',
           '"Times New Roman"',
@@ -144,14 +138,12 @@ const fontPairExample: ArbitraryExample<FontPair> = {
           'Courier New',
         ]),
         fontSize: compose(n => `${n}px`, number({ min, max })),
-        fontStyle: sample(['normal', 'italic']) as Arbitrary<
-          'normal' | 'italic'
-        >,
+        fontStyle: choice(['normal', 'italic']) as Sampler<'normal' | 'italic'>,
       })
 
     return record({
-      header: arbitraryFont({ min: 16, max: 40 }),
-      body: arbitraryFont({ min: 10, max: 18 }),
+      header: font({ min: 16, max: 40 }),
+      body: font({ min: 10, max: 18 }),
     })
   })(),
   render({ header, body }) {

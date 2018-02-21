@@ -1,23 +1,23 @@
 import * as React from 'react'
-import { Arbitrary } from '..'
+import { Sampler } from '..'
 import { monospaceFontFamily, padding } from './style'
 
 /**
- * Render arbitrary samples in realtime with an interactive slider.
+ * Render samples in realtime with an interactive slider.
  */
-export default class Sampler extends React.Component<
-  SamplerProps,
-  SamplerState
+export default class SamplerSlider extends React.Component<
+  SamplerSliderProps,
+  SamplerSliderState
 > {
   public state = {
     point: 0,
   }
 
   public render() {
-    const { generator, children, className, style = {} } = this.props
+    const { sampler, children, className, style = {} } = this.props
     const { point } = this.state
 
-    const rendered = children(generator(point), point)
+    const rendered = children(sampler(point), point)
 
     return (
       <div style={{ ...samplerCSS, ...style }} className={className}>
@@ -44,11 +44,11 @@ export default class Sampler extends React.Component<
   }
 }
 
-export interface SamplerProps {
+export interface SamplerSliderProps {
   /**
-   * Arbitrary generator to render in the sampler
+   * Sampler to render
    */
-  generator: Arbitrary<any>
+  sampler: Sampler<any>
 
   /**
    * Renderer of samples to React nodes
@@ -59,7 +59,7 @@ export interface SamplerProps {
   className?: string
 }
 
-export interface SamplerState {
+export interface SamplerSliderState {
   point: number
 }
 

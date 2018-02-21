@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { range } from 'ramda'
 import { View, StyleSheet } from 'react-primitives'
-import { Arbitrary } from '..'
+import { Sampler } from '..'
 
 /**
  * Render numerous samples at once.
@@ -13,8 +13,8 @@ import { Arbitrary } from '..'
  *
  * @param props React props
  */
-export default function Samples(props: SamplesProps) {
-  const { children, generator, count = 20 } = props
+export default function SamplesList(props: SamplesListProps) {
+  const { children, sampler, count = 20 } = props
 
   const points = range(0, count - 1).map(n => n / count)
 
@@ -22,23 +22,23 @@ export default function Samples(props: SamplesProps) {
     <View style={styles.samples}>
       {points.map((p, i) => (
         <View key={i} style={styles.sample}>
-          {children(generator(p))}
+          {children(sampler(p))}
         </View>
       ))}
     </View>
   )
 }
 
-export interface SamplesProps {
+export interface SamplesListProps {
   /**
-   * Renderer of arbitrary data to React
+   * Renderer for samples to React
    */
-  children: (arbitrary: any) => React.ReactNode
+  children: (sample: any) => React.ReactNode
 
   /**
-   * Aribtrary generator to sample from
+   * Sampler to use
    */
-  generator: Arbitrary<any>
+  sampler: Sampler<any>
 
   /**
    * Number of samples to render
@@ -49,7 +49,7 @@ export interface SamplesProps {
 const styles = StyleSheet.create({
   samples: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
   },
   sample: {

@@ -1,4 +1,5 @@
-import { Sampler, number, record } from 'arbitrary'
+import { number, record } from 'tastes'
+import SamplerSlider from 'tastes/dist/components/SamplerSlider'
 
 const dimensions = record({
   width: number({ min: 100, max: 1000 }),
@@ -6,7 +7,7 @@ const dimensions = record({
 })
 
 export default () => (
-  <Sampler generator={dimensions}>
+  <SamplerSlider sampler={dimensions}>
     {({ width, height }) => (
       <article>
         <h1>Sea Otter</h1>
@@ -57,5 +58,5 @@ export default () => (
         `}</style>
       </article>
     )}
-  </Sampler>
+  </SamplerSlider>
 )
