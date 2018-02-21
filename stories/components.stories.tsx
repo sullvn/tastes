@@ -9,9 +9,8 @@ import {
   sample,
   compose,
   Arbitrary,
-  Samples,
-  Sampler,
 } from '../src'
+import { Samples, Sampler } from '../src/components'
 import Card from '../stories/components/Card'
 import GradientSwatch from '../stories/components/GradientSwatch'
 

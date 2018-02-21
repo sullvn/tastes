@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "description": "Generate arbitrary data with control",
   "main": "dist/index.js",
+  "files": ["dist"],
   "repository": "https://github.com/awfulaxolotl/arbitrary",
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
   "scripts": {
-    "develop": "tsc && concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
+    "develop":
+      "tsc && concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
     "storybook": "start-storybook --port 9001 --config-dir .storybook",
     "test": "tsc && ava",
     "build": "npm run build:dist && npm run build:docs",
