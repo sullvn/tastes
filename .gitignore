@@ -16,3 +16,6 @@
 
 # Include documentation site
 !/docs/**
+
+# OS Junk
+.DS_Store
