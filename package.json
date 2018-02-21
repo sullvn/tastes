@@ -1,15 +1,16 @@
 {
   "name": "tastes",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Code and create with generative samples",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/awfulaxolotl/tastes",
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
   "scripts": {
-    "develop":
-      "tsc && concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
+    "develop": "tsc && concurrently 'tsc --watch' 'ava --watch' 'npm run storybook'",
     "storybook": "start-storybook --port 9001 --config-dir .storybook",
     "test": "tsc && ava",
     "build": "npm run build:dist && npm run build:docs",
