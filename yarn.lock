@@ -257,9 +257,9 @@
   version "0.25.28"
   resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.28.tgz#a8c021852e3fabae23c84b80bb65516f2352279d"
 
-"@types/react-native@^0.52.9":
-  version "0.52.25"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.52.25.tgz#78c0e6049d4dc0a7af7d4024baac28ae922bedaf"
+"@types/react-native@^0.55.14":
+  version "0.55.14"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.55.14.tgz#9a702845c7d72f2774b4e2004cb698c099f9b50e"
   dependencies:
     "@types/react" "*"
 
@@ -275,14 +275,6 @@
   dependencies:
     "@types/react" "*"
     "@types/webpack-env" "*"
-
-"@types/strip-bom@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/strip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"
-
-"@types/strip-json-comments@0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
 "@types/webpack-env@*":
   version "1.13.6"
@@ -2820,7 +2812,7 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^3.0.0, enhanced-resolve@^3.4.0:
+enhanced-resolve@^3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-3.4.1.tgz#0421e339fd71419b3da13d129b3979040230476e"
   dependencies:
@@ -2828,6 +2820,14 @@ enhanced-resolve@^3.0.0, enhanced-resolve@^3.4.0:
     memory-fs "^0.4.0"
     object-assign "^4.0.1"
     tapable "^0.2.7"
+
+enhanced-resolve@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-4.0.0.tgz#e34a6eaa790f62fccd71d93959f56b2b432db10a"
+  dependencies:
+    graceful-fs "^4.1.2"
+    memory-fs "^0.4.0"
+    tapable "^1.0.0"
 
 entities@~1.1.1:
   version "1.1.1"
@@ -6600,7 +6600,7 @@ source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.5.0:
+source-map-support@^0.5.0, source-map-support@^0.5.3:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.6.tgz#4435cee46b1aab62b8e8610ce60f788091c51c13"
   dependencies:
@@ -6805,7 +6805,7 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments@^2.0.0, strip-json-comments@~2.0.1:
+strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
@@ -6879,6 +6879,10 @@ symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
 tapable@^0.2.7:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.8.tgz#99372a5c999bf2df160afc0d74bed4f47948cd22"
+
+tapable@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.0.0.tgz#cbb639d9002eed9c6b5975eb20598d7936f1f9f2"
 
 tar@^4:
   version "4.4.2"
@@ -6987,19 +6991,19 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-ts-loader@^3.1.1:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-3.5.0.tgz#151d004dcddb4cf8e381a3bf9d6b74c2d957a9c0"
+ts-loader@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-4.3.0.tgz#4e3ba172783d1256d3a23bdfadde011a795fae9e"
   dependencies:
     chalk "^2.3.0"
-    enhanced-resolve "^3.0.0"
+    enhanced-resolve "^4.0.0"
     loader-utils "^1.0.2"
     micromatch "^3.1.4"
     semver "^5.0.1"
 
-ts-node@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-4.1.0.tgz#36d9529c7b90bb993306c408cd07f7743de20712"
+ts-node@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-6.0.3.tgz#28bf74bcad134fad17f7469dad04638ece03f0f4"
   dependencies:
     arrify "^1.0.0"
     chalk "^2.3.0"
@@ -7007,19 +7011,8 @@ ts-node@^4.1.0:
     make-error "^1.1.1"
     minimist "^1.2.0"
     mkdirp "^0.5.1"
-    source-map-support "^0.5.0"
-    tsconfig "^7.0.0"
-    v8flags "^3.0.0"
+    source-map-support "^0.5.3"
     yn "^2.0.0"
-
-tsconfig@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-7.0.0.tgz#84538875a4dc216e5c4a5432b3a4dec3d54e91b7"
-  dependencies:
-    "@types/strip-bom" "^3.0.0"
-    "@types/strip-json-comments" "0.0.30"
-    strip-bom "^3.0.0"
-    strip-json-comments "^2.0.0"
 
 tslib@^1.8.0, tslib@^1.8.1:
   version "1.9.1"
@@ -7279,12 +7272,6 @@ utils-merge@1.0.1:
 uuid@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
-
-v8flags@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/v8flags/-/v8flags-3.1.0.tgz#246a34a8158c0e1390dcb758e1140e5d004e230b"
-  dependencies:
-    homedir-polyfill "^1.0.1"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.3"
