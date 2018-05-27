@@ -22,5 +22,7 @@
     "jsx": "react",
     "sourceMap": true
   },
-  "exclude": ["src/**/*.jsx?", "stories/**/*.jsx?", "test/**/*.jsx?"]
+  // REMINDER: Include stories once they've been converted to the
+  // revised API.
+  "exclude": ["src/**/*.jsx?", "stories"]
 }
