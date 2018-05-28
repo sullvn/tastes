@@ -31,7 +31,7 @@ export function* sampleBatch<T>(
 /**
  * Partitions of unit space
  */
-function* unitPartitions(
+export function* unitPartitions(
   dimensions: number,
   order: number,
 ): IterableIterator<Point> {
@@ -39,15 +39,15 @@ function* unitPartitions(
   let p = repeat(0, dimensions)
 
   for (let n = 0; n < samples; n += 1) {
-    p = increment(p, order)
     yield p.map(d => (d + 1) / (order + 1))
+    p = increment(p, order)
   }
 }
 
-function increment(point: Point, order: number): Point {
+export function increment(point: Point, order: number): Point {
   const p = [...point]
 
-  for (let i = point.length - 1; i <= 0; i -= 1) {
+  for (let i = point.length - 1; i >= 0; i -= 1) {
     p[i] = (p[i] + 1) % order
     const carry = p[i] === 0
     if (!carry) {
