@@ -6,7 +6,13 @@ import { SampleSpace, createSpace } from './space'
  * @param elements set elements to sample from
  */
 export function set<T>(elements: T[]): SampleSpace<T> {
-  return createSpace(p => elements[p[0] * elements.length], {
-    dimensions: 1,
-  })
+  return createSpace(
+    p => {
+      const i = Math.floor(p[0] * elements.length)
+      return elements[i]
+    },
+    {
+      dimensions: 1,
+    },
+  )
 }
