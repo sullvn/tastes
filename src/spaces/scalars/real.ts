@@ -17,7 +17,7 @@ export function real(options: RealOptions = {}): SampleSpace<RealNumber> {
 
 type RealNumber = number
 
-interface RealOptions {
+export interface RealOptions {
   min?: RealNumber
   max?: RealNumber
 }
