@@ -23,7 +23,7 @@ export function* sampleBatch<T>(
   space: SampleSpace<T>,
   order: number,
 ): IterableIterator<T> {
-  for (const p of unitPartitions(space.dimensions, order)) {
+  for (const p of unitPartitions(space.dimensions.length, order)) {
     yield space(p)
   }
 }

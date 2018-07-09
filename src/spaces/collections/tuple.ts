@@ -1,5 +1,6 @@
 import { last, zip } from 'ramda'
 import { SampleSpace, createSpace } from '../space'
+import { Dimension } from '../dimensions'
 import { Point } from '../../primitives'
 
 /**
@@ -82,21 +83,25 @@ export function tuple<T>(subspaces: SampleSpace<T>[]): SampleSpace<T[]> {
   const pointOffsets: number[] = subspaces.reduce(
     (pos, s) => {
       const lastOffset = last(pos) as number
-      pos.push(lastOffset + s.dimensions)
+      pos.push(lastOffset + s.dimensions.length)
 
       return pos
     },
     [0],
   )
-  const dimensions = pointOffsets[pointOffsets.length - 1]
 
   const spaceFn = (p: Point) => {
     const spos = zip(subspaces, pointOffsets)
     return spos.map(([s, po]) => {
-      const subpoint = p.slice(po, po + s.dimensions)
+      const subpoint = p.slice(po, po + s.dimensions.length)
       return s(subpoint)
     })
   }
+
+  const dimensions = subspaces.reduce(
+    (ds, ss) => [...ds, ...ss.dimensions],
+    [] as Dimension[],
+  )
 
   return createSpace(spaceFn, { dimensions })
 }

@@ -9,5 +9,5 @@ import { SampleSpace, createSpace } from './space'
  * @param value constant value to always return
  */
 export function constant<T>(value: T): SampleSpace<T> {
-  return createSpace(() => value, { dimensions: 0 })
+  return createSpace(() => value, { dimensions: [] })
 }

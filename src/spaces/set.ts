@@ -1,4 +1,5 @@
 import { SampleSpace, createSpace } from './space'
+import { setSuggestions } from './suggestions'
 
 /**
  * Sample space of discrete elements.
@@ -12,7 +13,11 @@ export function set<T>(elements: T[]): SampleSpace<T> {
       return elements[i]
     },
     {
-      dimensions: 1,
+      dimensions: [
+        {
+          suggestions: setSuggestions(elements.length),
+        },
+      ],
     },
   )
 }

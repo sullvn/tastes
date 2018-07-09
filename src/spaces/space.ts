@@ -1,4 +1,5 @@
-import { Point, isPointVector, PointVector } from '../primitives'
+import { Point, isPointVector, PointVector, Vector } from '../primitives'
+import { Dimension } from './dimensions'
 
 /**
  * Sample space for an arbitrary data type.
@@ -25,7 +26,7 @@ export interface SafeSampleSpaceFn<T, D extends number> {
  * Sample space traits which describe it.
  */
 export interface SampleSpaceTraits<D extends number> {
-  readonly dimensions: D
+  readonly dimensions: Vector<Dimension, D>
 }
 
 type AnyDimensions = number
@@ -44,7 +45,7 @@ export function createSpace<T, D extends number>(
 
   // Validate arguments to the space
   const safeFn: SampleSpaceFn<T> = (p: Point) => {
-    if (!isPointVector(p, dimensions)) {
+    if (!isPointVector(p, dimensions.length)) {
       throw new TypeError('Point of wrong dimensionality')
     }
 

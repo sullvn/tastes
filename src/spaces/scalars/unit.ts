@@ -1,5 +1,6 @@
 import { SampleSpace, createSpace } from '../space'
 import { Unit as UnitReal } from '../../primitives/unit'
+import { boundedSuggestions } from '../suggestions'
 
 /**
  * Unit real sample space
@@ -9,6 +10,10 @@ import { Unit as UnitReal } from '../../primitives/unit'
  */
 export function unit(): SampleSpace<UnitReal> {
   return createSpace(p => p[0], {
-    dimensions: 1,
+    dimensions: [
+      {
+        suggestions: boundedSuggestions,
+      },
+    ],
   })
 }
