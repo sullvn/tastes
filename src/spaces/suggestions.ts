@@ -1,13 +1,17 @@
 import { Unit, MIN_UNIT, MAX_UNIT } from '../primitives'
 
 /**
- * Sugggestions for sampling
+ * Suggestions for sampling
  *
  * Different data types lend themselves to different sampling
  * patterns.
+ *
+ * The 'order' is a relative measure of sampling count. More
+ * samples the higher the order. Each set of suggestions can
+ * decide what it should return.
  */
 export interface Suggestions {
-  (count: number): IterableIterator<Unit>
+  (order: number): IterableIterator<Unit>
 }
 
 /**
@@ -32,13 +36,13 @@ export function setSuggestions(size: number): Suggestions {
  * When in doubt, just equally space out samples without
  * touching edge cases.
  *
- * @param count number of desired samples
+ * @param order relative number of desired samples
  */
 export const scalarSuggestions: Suggestions = function* scalarSuggestions(
-  count: number,
+  order: number,
 ) {
-  for (let i = 0; i < count; i++) {
-    yield (i + 1) / (count + 1)
+  for (let i = 0; i < order; i++) {
+    yield (i + 1) / (order + 1)
   }
 }
 
@@ -48,15 +52,15 @@ export const scalarSuggestions: Suggestions = function* scalarSuggestions(
  * An unbounded scalar is one like mass, length, or count. It can
  * be arbitrarily large. Let's hug the minimum and avoid large sample values.
  *
- * @param count number of desired samples
+ * @param order relative number of desired samples
  */
 export const unboundedSuggestions: Suggestions = function* unboundedSuggestions(
-  count: number,
+  order: number,
 ) {
-  if (count >= 1) {
+  if (order >= 1) {
     yield MIN_UNIT
   }
-  yield* scalarSuggestions(count - 1)
+  yield* scalarSuggestions(order - 1)
 }
 
 /**
@@ -65,18 +69,18 @@ export const unboundedSuggestions: Suggestions = function* unboundedSuggestions(
  * A bounded scalar is one like portion or percentage. Emphasizes the
  * start and end as important samples.
  *
- * @param count number of desired samples
+ * @param order relative number of desired samples
  */
 export const boundedSuggestions: Suggestions = function* boundedSuggestions(
-  count: number,
+  order: number,
 ) {
-  if (count >= 1) {
+  if (order >= 1) {
     yield MIN_UNIT
   }
-  if (count >= 2) {
+  if (order >= 2) {
     yield MAX_UNIT
   }
-  yield* scalarSuggestions(count - 2)
+  yield* scalarSuggestions(order - 2)
 }
 
 /**
@@ -85,12 +89,12 @@ export const boundedSuggestions: Suggestions = function* boundedSuggestions(
  * A looped scalar is one like angle or clock time. Evenly distributes
  * samples along the loop of values.
  *
- * @param count number of desired samples
+ * @param order relative number of desired samples
  */
 export const loopedSuggestions: Suggestions = function* loopedSuggestions(
-  count: number,
+  order: number,
 ) {
-  for (let i = 0; i < count; i++) {
-    yield i / count
+  for (let i = 0; i < order; i++) {
+    yield i / order
   }
 }

@@ -13,7 +13,7 @@ import { SampleSpace } from '../spaces'
  * dimensions can suggest any points it wants.
  *
  * @param space sample space in which to sample from
- * @param order `samples = order ^ dimensions`
+ * @param order relative number of samples
  */
 export function* sampleBatch<T>(
   space: SampleSpace<T>,
