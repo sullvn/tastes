@@ -15,7 +15,7 @@ import { Point } from '../../primitives'
  *
  * @param subspaces spaces in which to combine into one sample space
  */
-export function tuple<T0>(subspaces: [SS<T0>]): SS<[T0]>
+export function tuple<T>(subspaces: SS<T>[]): SS<T[]>
 export function tuple<T0, T1>(subspaces: [SS<T0>, SS<T1>]): SS<[T0, T1]>
 export function tuple<T0, T1, T2>(
   subspaces: [SS<T0>, SS<T1>, SS<T2>],

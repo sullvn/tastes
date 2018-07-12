@@ -10,7 +10,10 @@ import { real, RealOptions } from './real'
 export function integer(
   options: IntegerOptions = {},
 ): SampleSpace<IntegerNumber> {
-  const r = real(options)
+  const r = real({
+    ...options,
+    max: options.max ? options.max + 1 : undefined,
+  })
 
   return map(n => Math.floor(n), r)
 }
