@@ -1,6 +1,6 @@
 import test from 'ava'
 import { integer } from './integer'
-import { MAX_UNIT } from '../../primitives'
+import { M } from '../../primitives'
 
 test('integers with chosen min and max', t => {
   const n = integer({ min: -100, max: 100 })
@@ -10,5 +10,5 @@ test('integers with chosen min and max', t => {
   t.is(n([0.5]), 0)
   t.is(n([0.995]), 99)
   t.is(n([0.999]), 100)
-  t.is(n([MAX_UNIT]), 100)
+  t.is(n([M]), 100)
 })

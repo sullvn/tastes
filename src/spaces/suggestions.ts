@@ -1,4 +1,4 @@
-import { Unit, MIN_UNIT, MAX_UNIT } from '../primitives'
+import { Unit, N, M } from '../primitives'
 
 /**
  * Suggestions for sampling
@@ -58,7 +58,7 @@ export const unboundedSuggestions: Suggestions = function* unboundedSuggestions(
   order: number,
 ) {
   if (order >= 1) {
-    yield MIN_UNIT
+    yield N
   }
   yield* scalarSuggestions(order - 1)
 }
@@ -75,10 +75,10 @@ export const boundedSuggestions: Suggestions = function* boundedSuggestions(
   order: number,
 ) {
   if (order >= 1) {
-    yield MIN_UNIT
+    yield N
   }
   if (order >= 2) {
-    yield MAX_UNIT
+    yield M
   }
   yield* scalarSuggestions(order - 2)
 }

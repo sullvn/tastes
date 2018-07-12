@@ -8,18 +8,18 @@
 export type Unit = number
 
 /**
- * Smallest unit real
+ * Minimum unit real
  *
  * Zero.
  */
-export const MIN_UNIT = 0
+export const N = 0
 
 /**
- * Largest unit real
+ * Maximum unit real
  *
  * Largest JS number below 1.
  */
-export const MAX_UNIT = 1 - Number.EPSILON
+export const M = 1 - Number.EPSILON
 
 /**
  * Is a value a unit real?

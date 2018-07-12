@@ -6,26 +6,21 @@ import {
   scalarSuggestions,
   unboundedSuggestions,
 } from './suggestions'
-import { MIN_UNIT, MAX_UNIT } from '../primitives'
+import { N, M } from '../primitives'
 
 test('boundedSuggestions', t => {
   t.deepEqual(Array.from(boundedSuggestions(0)), [])
-  t.deepEqual(Array.from(boundedSuggestions(1)), [MIN_UNIT])
-  t.deepEqual(Array.from(boundedSuggestions(2)), [MIN_UNIT, MAX_UNIT])
-  t.deepEqual(Array.from(boundedSuggestions(3)), [MIN_UNIT, MAX_UNIT, 1 / 2])
-  t.deepEqual(Array.from(boundedSuggestions(4)), [
-    MIN_UNIT,
-    MAX_UNIT,
-    1 / 3,
-    2 / 3,
-  ])
+  t.deepEqual(Array.from(boundedSuggestions(1)), [N])
+  t.deepEqual(Array.from(boundedSuggestions(2)), [N, M])
+  t.deepEqual(Array.from(boundedSuggestions(3)), [N, M, 1 / 2])
+  t.deepEqual(Array.from(boundedSuggestions(4)), [N, M, 1 / 3, 2 / 3])
 })
 
 test('loopedSuggestions', t => {
   t.deepEqual(Array.from(loopedSuggestions(0)), [])
-  t.deepEqual(Array.from(loopedSuggestions(1)), [MIN_UNIT])
-  t.deepEqual(Array.from(loopedSuggestions(2)), [MIN_UNIT, 1 / 2])
-  t.deepEqual(Array.from(loopedSuggestions(3)), [MIN_UNIT, 1 / 3, 2 / 3])
+  t.deepEqual(Array.from(loopedSuggestions(1)), [N])
+  t.deepEqual(Array.from(loopedSuggestions(2)), [N, 1 / 2])
+  t.deepEqual(Array.from(loopedSuggestions(3)), [N, 1 / 3, 2 / 3])
 })
 
 test('setSuggestions', t => {
@@ -44,7 +39,7 @@ test('scalarSuggestions', t => {
 
 test('unboundedSuggestions', t => {
   t.deepEqual(Array.from(unboundedSuggestions(0)), [])
-  t.deepEqual(Array.from(unboundedSuggestions(1)), [MIN_UNIT])
-  t.deepEqual(Array.from(unboundedSuggestions(2)), [MIN_UNIT, 1 / 2])
-  t.deepEqual(Array.from(unboundedSuggestions(3)), [MIN_UNIT, 1 / 3, 2 / 3])
+  t.deepEqual(Array.from(unboundedSuggestions(1)), [N])
+  t.deepEqual(Array.from(unboundedSuggestions(2)), [N, 1 / 2])
+  t.deepEqual(Array.from(unboundedSuggestions(3)), [N, 1 / 3, 2 / 3])
 })
