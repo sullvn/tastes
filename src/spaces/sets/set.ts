@@ -1,5 +1,5 @@
-import { SampleSpace, createSpace } from './space'
-import { setSuggestions } from './suggestions'
+import { SampleSpace, createSpace } from '../space'
+import { setSuggestions } from '../suggestions'
 
 /**
  * Sample space of discrete elements.
