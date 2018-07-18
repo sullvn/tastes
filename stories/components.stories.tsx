@@ -1,6 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import {
+  array,
+  boolean,
   constant,
   createSpace,
   integer,
@@ -10,7 +12,6 @@ import {
   SampleSpace,
   set,
   Vector,
-  array,
 } from '../src'
 import { SamplesList } from '../src/components'
 import { Dimension } from '../src/spaces/dimensions'
@@ -85,7 +86,7 @@ const cardExample: SpaceExample<Card> = {
     title: set(['', 'Card Title']),
     text: set(['', 'Card description.']),
     list: array(constant('element'), { maxLength: 20 }),
-    hasImage: set([false, true]),
+    hasImage: boolean(),
     image: record({
       width: integer({ min: 50, max: 1000 }),
       height: integer({ min: 50, max: 1000 }),
