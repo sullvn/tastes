@@ -1,16 +1,7 @@
 {
   "files.exclude": {
     "**/.git": true,
-    "**/.DS_Store": true,
-    "**/*.js": {
-      "when": "$(basename).ts"
-    },
-    "**/**.js": {
-      "when": "$(basename).tsx"
-    },
-    "**/*.map": {
-      "when": "$(basename).map"
-    }
+    "**/.DS_Store": true
   },
   "typescript.tsdk": "node_modules/typescript/lib"
 }

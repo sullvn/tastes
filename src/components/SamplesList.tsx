@@ -2,7 +2,7 @@ import * as React from 'react'
 import { View, StyleSheet } from 'react-primitives'
 import { SampleSpace } from '../spaces'
 import { sampleBatch } from '../samplers'
-import { mapIterable } from '../util'
+import { mapIterable, reiterable } from '../util'
 
 /**
  * Render numerous samples at once.
@@ -17,11 +17,13 @@ import { mapIterable } from '../util'
 export default function SamplesList<T>(props: SamplesListProps<T>) {
   const { children, space, order } = props
 
-  const renderedSamples = mapIterable(sampleBatch(space, order), (s, i) => (
-    <View key={i} style={styles.sample}>
-      {children(s)}
-    </View>
-  ))
+  const renderedSamples = reiterable(() =>
+    mapIterable(sampleBatch(space, order), (s, i) => (
+      <View key={i} style={styles.sample}>
+        {children(s)}
+      </View>
+    )),
+  )
 
   return <View style={styles.samples}>{renderedSamples}</View>
 }
@@ -46,7 +48,7 @@ export interface SamplesListProps<T> {
 const styles = StyleSheet.create({
   samples: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     flexWrap: 'wrap',
   },
   sample: {

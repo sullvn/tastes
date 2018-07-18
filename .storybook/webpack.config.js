@@ -1,11 +1,11 @@
 const path = require('path')
 
-module.exports = {
-  resolve: {
-    alias: {
-      src: path.resolve(__dirname, '../src'),
-      stories: path.resolve(__dirname, '../stories'),
-      test: path.resolve(__dirname, '../test'),
-    },
-  },
+module.exports = (baseConfig, env, config) => {
+  config.module.rules.push({
+    test: /\.(ts|tsx)$/,
+    loader: require.resolve('awesome-typescript-loader'),
+  })
+  config.resolve.extensions.push('.ts', '.tsx')
+
+  return config
 }

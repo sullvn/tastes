@@ -10,9 +10,9 @@
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
   "scripts": {
-    "develop": "tsc && concurrently 'tsc --watch' 'ava --watch'",
+    "develop": "ava --watch",
     "storybook": "start-storybook --port 9001 --config-dir .storybook",
-    "test": "tsc && ava",
+    "test": "ava",
     "build": "npm run build:dist && npm run build:docs",
     "build:dist": "tsc --project tsconfig.dist.json",
     "build:docs": "build-storybook --config-dir .storybook --output-dir docs"
@@ -23,16 +23,17 @@
     "react-primitives": "^0.6.0"
   },
   "devDependencies": {
-    "@storybook/react": "^3.2.16",
+    "@storybook/react": "^4.0.0-alpha.14",
     "@types/ramda": "^0.25.5",
     "@types/react-native": "^0.56.0",
-    "@types/storybook__react": "^3.0.5",
-    "ava": "1.0.0-beta.4",
-    "concurrently": "^3.5.0",
+    "@types/storybook__react": "^3.0.8",
+    "ava": "1.0.0-beta.6",
+    "awesome-typescript-loader": "^5.2.0",
+    "babel-core": "^6.26.3",
     "react-dom": "^16.1.1",
     "ts-loader": "^4.3.0",
     "ts-node": "^7.0.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.9.2"
   }
 }
