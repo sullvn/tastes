@@ -175,7 +175,7 @@ console.log(c(${p}))`
   ))
 
 storiesOf('string', module)
-  .add('[SLOW] from ascii alphabet', () => (
+  .add('from ascii alphabet', () => (
     <SpaceSamples
       space={string(ascii, { maxLength: 5 })}
       code={p =>
@@ -187,7 +187,7 @@ console.log(s(${p}))`
       }
     />
   ))
-  .add('[SLOW] of digits', () => (
+  .add('of digits', () => (
     <SpaceSamples
       space={string(digits, { maxLength: 5 })}
       code={p =>
@@ -239,7 +239,7 @@ console.log(integerArrays(${p}))`
   ))
 
 storiesOf('record', module)
-  .add('[SLOW] of identification', () => (
+  .add('of identification', () => (
     <SpaceSamples
       space={record({
         initials: string(latinUppercase, { maxLength: 3 }),

@@ -23,8 +23,9 @@ export interface Suggestions {
  * @param size number of elements in the set
  */
 export function setSuggestions(size: number): Suggestions {
-  return function* suggestions() {
-    for (let i = 0; i < size; i++) {
+  return function* suggestions(order: number) {
+    const count = Math.min(order, size)
+    for (let i = 0; i < count; i++) {
       yield i / size
     }
   }

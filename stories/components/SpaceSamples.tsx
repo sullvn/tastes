@@ -15,7 +15,7 @@ interface SpaceSamplesProps<T> {
  */
 export function SpaceSamples<T>({ space, code }: SpaceSamplesProps<T>) {
   return (
-    <SamplesList space={space} order={1}>
+    <SamplesList space={space} order={3}>
       {(sample, point) => (
         <CodeSample sample={sample} code={code(stringifyPoint(point))} />
       )}
