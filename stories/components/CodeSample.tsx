@@ -1,14 +1,19 @@
 import * as React from 'react'
 import { monospaceFontFamily, padding } from '../../src/components/style'
 
-interface PreviewProps {
+interface CodeSampleProps {
   code: React.ReactNode
   sample: any
 }
 
-export default function Preview({ code, sample }: PreviewProps) {
+/**
+ * CodeSample React component
+ *
+ * Show a code sample and it's evaluation next to each other.
+ */
+export function CodeSample({ code, sample }: CodeSampleProps) {
   return (
-    <div style={previewCSS}>
+    <div style={codeSampleCSS}>
       <pre style={codeCSS}>
         <code style={{ fontFamily: monospaceFontFamily }}>{code}</code>
       </pre>
@@ -21,7 +26,7 @@ export default function Preview({ code, sample }: PreviewProps) {
   )
 }
 
-const previewCSS: React.CSSProperties = {
+const codeSampleCSS: React.CSSProperties = {
   display: 'flex',
   flexWrap: 'wrap',
 }

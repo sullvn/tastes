@@ -16,8 +16,8 @@ import {
 import { SamplesList } from '../src/components'
 import { Dimension } from '../src/spaces/dimensions'
 import { loopedSuggestions } from '../src/spaces/suggestions'
-import Card from '../stories/components/Card'
-import GradientSwatch from '../stories/components/GradientSwatch'
+import Card from './components/Card'
+import GradientSwatch from './components/GradientSwatch'
 
 storiesOf('SamplesList', module)
   .add('of gradients', () => (

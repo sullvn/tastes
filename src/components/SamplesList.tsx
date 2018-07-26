@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-primitives'
 import { SampleSpace } from '../spaces'
 import { sampleBatch } from '../samplers'
 import { mapIterable, reiterable } from '../util'
+import { Point } from '../primitives'
 
 /**
  * Render numerous samples at once.
@@ -18,9 +19,9 @@ export default function SamplesList<T>(props: SamplesListProps<T>) {
   const { children, space, order } = props
 
   const renderedSamples = reiterable(() =>
-    mapIterable(sampleBatch(space, order), (s, i) => (
+    mapIterable(sampleBatch(space, order), ({ sample, point }, i) => (
       <View key={i} style={styles.sample}>
-        {children(s)}
+        {children(sample, point)}
       </View>
     )),
   )
@@ -32,7 +33,7 @@ export interface SamplesListProps<T> {
   /**
    * Renderer for samples to React
    */
-  children: (sample: T) => React.ReactNode
+  children: (sample: T, point: Point) => React.ReactNode
 
   /**
    * Sample space to use

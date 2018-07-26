@@ -1,5 +1,6 @@
 import { product, reiterable } from '../util'
 import { SampleSpace } from '../spaces'
+import { Point } from '../primitives'
 
 /**
  * Batch of samples from a sample space
@@ -18,13 +19,18 @@ import { SampleSpace } from '../spaces'
 export function* sampleBatch<T>(
   space: SampleSpace<T>,
   order: number,
-): IterableIterator<T> {
+): IterableIterator<SamplePoint<T>> {
   const dimensionsSuggested = space.dimensions.map(d =>
     reiterable(() => d.suggestions(order)),
   )
   const suggested = product(dimensionsSuggested)
 
-  for (const s of suggested) {
-    yield space(s)
+  for (const p of suggested) {
+    yield { sample: space(p), point: p }
   }
+}
+
+interface SamplePoint<T> {
+  sample: T
+  point: Point
 }
