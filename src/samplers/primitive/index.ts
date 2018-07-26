@@ -1,7 +1,0 @@
-export { default as array } from './array'
-export { default as boolean } from './boolean'
-export { default as constant } from './constant'
-export { default as number } from './number'
-export { default as record } from './record'
-export { default as choice } from './choice'
-export { default as string } from './string'

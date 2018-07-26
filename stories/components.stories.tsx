@@ -1,47 +1,43 @@
-import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-
-import { array, string, record, number, choice, compose, Sampler } from '../src'
-import { SamplesList, SamplerSlider } from '../src/components'
-import Card from '../stories/components/Card'
-import GradientSwatch from '../stories/components/GradientSwatch'
+import * as React from 'react'
+import {
+  array,
+  boolean,
+  constant,
+  createSpace,
+  integer,
+  map,
+  real,
+  record,
+  SampleSpace,
+  set,
+  Vector,
+} from '../src'
+import { SamplesList } from '../src/components'
+import { Dimension } from '../src/spaces/dimensions'
+import { loopedSuggestions } from '../src/spaces/suggestions'
+import Card from './components/Card'
+import GradientSwatch from './components/GradientSwatch'
 
 storiesOf('SamplesList', module)
-  .add('of 50 gradients', () => (
-    <SamplesList sampler={gradientExample.sampler} count={50}>
-      {gradientExample.render}
-    </SamplesList>
-  ))
-  .add('of 100 cards', () => (
-    <SamplesList sampler={cardExample.sampler} count={500}>
-      {cardExample.render}
-    </SamplesList>
-  ))
-  .add('of 200 font pairs', () => (
-    <SamplesList sampler={fontPairExample.sampler} count={200}>
-      {fontPairExample.render}
-    </SamplesList>
-  ))
-
-storiesOf('SamplerSlider', module)
   .add('of gradients', () => (
-    <SamplerSlider sampler={gradientExample.sampler}>
+    <SamplesList space={gradientExample.space} order={8}>
       {gradientExample.render}
-    </SamplerSlider>
+    </SamplesList>
   ))
   .add('of cards', () => (
-    <SamplerSlider sampler={cardExample.sampler}>
+    <SamplesList space={cardExample.space} order={2}>
       {cardExample.render}
-    </SamplerSlider>
+    </SamplesList>
   ))
   .add('of font pairs', () => (
-    <SamplerSlider sampler={fontPairExample.sampler}>
+    <SamplesList space={fontPairExample.space} order={1}>
       {fontPairExample.render}
-    </SamplerSlider>
+    </SamplesList>
   ))
 
-interface SamplerExample<T> {
-  sampler: Sampler<T>
+interface SpaceExample<T> {
+  space: SampleSpace<T>
   render: (sample: T) => React.ReactNode
 }
 
@@ -50,9 +46,13 @@ interface Gradient {
   rightHue: number
 }
 
-const gradientExample: SamplerExample<Gradient> = {
-  sampler: (function() {
-    const hue = number({ min: 0, max: 360 })
+const gradientExample: SpaceExample<Gradient> = {
+  space: (function() {
+    // TODO: Much nicer API for setting suggestions
+    const hue = createSpace(real({ min: 0, max: 360 }), {
+      dimensions: [{ suggestions: loopedSuggestions }] as Vector<Dimension, 1>,
+    })
+
     return record({
       leftHue: hue,
       rightHue: hue,
@@ -74,33 +74,35 @@ interface Card {
   title: string
   text: string
   list: string[]
+  hasImage: boolean
   image: {
     width: number
     height: number
   }
 }
 
-const cardExample: SamplerExample<Card> = {
-  sampler: record({
-    title: string(),
-    text: string(),
-    list: array(string()),
+const cardExample: SpaceExample<Card> = {
+  space: record({
+    title: set(['', 'Card Title']),
+    text: set(['', 'Card description.']),
+    list: array(constant('element'), { maxLength: 20 }),
+    hasImage: boolean(),
     image: record({
-      width: compose(Math.floor, number({ min: 50, max: 1000 })),
-      height: compose(Math.floor, number({ min: 50, max: 1000 })),
+      width: integer({ min: 50, max: 1000 }),
+      height: integer({ min: 50, max: 1000 }),
     }),
   }),
-  render({ title, text, list, image }) {
+  render({ title, text, list, hasImage, image }) {
     return (
       <Card>
         <h4>{title}</h4>
         <img
           style={{
+            display: hasImage ? 'block' : 'none',
             width: `${image.width}px`,
             height: `${image.height}px`,
             maxWidth: '100%',
             maxHeight: '10em',
-            display: 'block',
             margin: '0 auto',
             background: '#acc',
           }}
@@ -122,12 +124,12 @@ interface FontPair {
   body: Font
 }
 
-const fontPairExample: SamplerExample<FontPair> = {
-  sampler: (function() {
+const fontPairExample: SpaceExample<FontPair> = {
+  space: (function() {
     const font = ({ min, max }: { min: number; max: number }) =>
       record({
-        fontWeight: choice(['normal', 'bold']) as Sampler<'normal' | 'bold'>,
-        fontFamily: choice([
+        fontWeight: set(['normal', 'bold']) as SampleSpace<'normal' | 'bold'>,
+        fontFamily: set([
           'Georgia',
           '"Palatino Linotype"',
           '"Times New Roman"',
@@ -137,8 +139,10 @@ const fontPairExample: SamplerExample<FontPair> = {
           'Verdana',
           'Courier New',
         ]),
-        fontSize: compose(n => `${n}px`, number({ min, max })),
-        fontStyle: choice(['normal', 'italic']) as Sampler<'normal' | 'italic'>,
+        fontSize: map(n => `${n}px`, integer({ min, max })),
+        fontStyle: set(['normal', 'italic']) as SampleSpace<
+          'normal' | 'italic'
+        >,
       })
 
     return record({

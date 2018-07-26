@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "module": "commonjs",
     "target": "es2017",
     "moduleResolution": "node",
 
@@ -21,6 +21,5 @@
 
     "jsx": "react",
     "sourceMap": true
-  },
-  "exclude": ["src/**/*.jsx?", "stories/**/*.jsx?", "test/**/*.jsx?"]
+  }
 }

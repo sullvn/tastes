@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { range } from 'ramda'
 import { View, StyleSheet } from 'react-primitives'
-import { Sampler } from '..'
+import { SampleSpace } from '../spaces'
+import { sampleBatch } from '../samplers'
+import { mapIterable, reiterable } from '../util'
+import { Point } from '../primitives'
 
 /**
  * Render numerous samples at once.
@@ -13,43 +15,41 @@ import { Sampler } from '..'
  *
  * @param props React props
  */
-export default function SamplesList(props: SamplesListProps) {
-  const { children, sampler, count = 20 } = props
+export default function SamplesList<T>(props: SamplesListProps<T>) {
+  const { children, space, order } = props
 
-  const points = range(0, count - 1).map(n => n / count)
-
-  return (
-    <View style={styles.samples}>
-      {points.map((p, i) => (
-        <View key={i} style={styles.sample}>
-          {children(sampler(p))}
-        </View>
-      ))}
-    </View>
+  const renderedSamples = reiterable(() =>
+    mapIterable(sampleBatch(space, order), ({ sample, point }, i) => (
+      <View key={i} style={styles.sample}>
+        {children(sample, point)}
+      </View>
+    )),
   )
+
+  return <View style={styles.samples}>{renderedSamples}</View>
 }
 
-export interface SamplesListProps {
+export interface SamplesListProps<T> {
   /**
    * Renderer for samples to React
    */
-  children: (sample: any) => React.ReactNode
+  children: (sample: T, point: Point) => React.ReactNode
 
   /**
-   * Sampler to use
+   * Sample space to use
    */
-  sampler: Sampler<any>
+  space: SampleSpace<T>
 
   /**
-   * Number of samples to render
+   * Relative amount of samples to render
    */
-  count?: number
+  order: number
 }
 
 const styles = StyleSheet.create({
   samples: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     flexWrap: 'wrap',
   },
   sample: {

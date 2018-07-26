@@ -1,3 +1,5 @@
-export * from './types'
+export * from './components'
+export * from './primitives'
 export * from './samplers'
+export * from './spaces'
 export * from './util'
