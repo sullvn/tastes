@@ -4,6 +4,8 @@
 
 # Tastes
 
+[![Build Status](https://travis-ci.org/awfulaxolotl/tastes.svg?branch=master)](https://travis-ci.org/awfulaxolotl/tastes)
+
 Code and create with generative samples. Generate example data with more control than just random.
 
 Useful for navigating and refining the space of possibilities for your data, code, and ideas. The salt n' pepper to your:
