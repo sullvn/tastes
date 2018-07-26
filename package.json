@@ -1,6 +1,6 @@
 {
   "name": "tastes",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Code and create with generative samples",
   "main": "dist/index.js",
   "files": [
