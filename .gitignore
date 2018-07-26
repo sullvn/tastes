@@ -2,20 +2,8 @@
 /node_modules
 /yarn-error.log
 
-# Compiled Typescript (development)
-*.js
-*.jsx
-*.js.map
-*.jsx.map
-
 # Compiled Typescript (build)
 /dist
-
-# Include Storybook files
-!/.storybook/**
-
-# Include documentation site
-!/docs/**
 
 # OS Junk
 .DS_Store
