@@ -2,20 +2,23 @@
   "name": "tastes",
   "version": "0.3.0",
   "description": "Code and create with generative samples",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
   "repository": "https://github.com/awfulaxolotl/tastes",
   "author": "Kevin Sullivan <kevin.sullivan@axolotl.industries>",
   "license": "MIT",
+  "module": "dist/esm/index.js",
+  "main": "dist/cjs/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "develop": "ava --watch",
     "storybook": "start-storybook --port 9001 --config-dir .storybook",
     "test": "ava",
     "build": "npm run build:dist && npm run build:docs",
-    "build:dist": "tsc --project tsconfig.dist.json",
-    "build:docs": "build-storybook --config-dir .storybook --output-dir docs"
+    "build:dist": "rimraf dist && npm run build:esm && npm run build:cjs",
+    "build:esm": "rimraf dist/esm && tsc --project tsconfig.esm.json",
+    "build:cjs": "rimraf dist/cjs && tsc --project tsconfig.cjs.json",
+    "build:docs": "rimraf docs && build-storybook --config-dir .storybook --output-dir docs"
   },
   "dependencies": {
     "ramda": "^0.25.0",
@@ -31,6 +34,7 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
     "react-dom": "^16.1.1",
+    "rimraf": "^2.6.2",
     "ts-loader": "^4.3.0",
     "ts-node": "^7.0.0",
     "tslint": "^5.8.0",
