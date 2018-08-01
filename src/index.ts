@@ -1,4 +1,3 @@
-export * from './components'
 export * from './primitives'
 export * from './samplers'
 export * from './spaces'

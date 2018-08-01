@@ -1,6 +1,7 @@
 import * as React from 'react'
+import { Point, SampleSpace } from '../../src'
+import { SamplesList } from '../../src/components'
 import { CodeSample } from './CodeSample'
-import { SamplesList, SampleSpace, Point } from '../../src'
 
 interface SpaceSamplesProps<T> {
   space: SampleSpace<T>
