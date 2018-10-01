@@ -28,16 +28,16 @@
   "devDependencies": {
     "@storybook/react": "^4.0.0-alpha.14",
     "@types/ramda": "^0.25.5",
-    "@types/react-native": "^0.56.0",
+    "@types/react-native": "^0.57.0",
     "@types/storybook__react": "^3.0.8",
     "ava": "1.0.0-beta.6",
     "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
     "react-dom": "^16.1.1",
     "rimraf": "^2.6.2",
-    "ts-loader": "^4.3.0",
+    "ts-loader": "^5.2.1",
     "ts-node": "^7.0.0",
     "tslint": "^5.8.0",
-    "typescript": "^3.0.1"
+    "typescript": "^3.1.0"
   }
 }
