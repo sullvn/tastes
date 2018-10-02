@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/awfulaxolotl/tastes.svg?branch=master)](https://travis-ci.org/awfulaxolotl/tastes)
 
-Code and create with generative samples. Generate example data with more control than just random.
+**Tastes** is a Javascript library for visualizing software behavior using intelligent sampling.
 
 Useful for navigating and refining the space of possibilities for your data, code, and ideas. The salt n' pepper to your:
 
@@ -19,6 +19,49 @@ Useful for navigating and refining the space of possibilities for your data, cod
 
 ```sh
 yarn add tastes # or npm install tastes --save
+```
+
+## A Quick Bite
+
+Let's use Tastes to prototype different versions of a minimal poster.
+
+[Code on Runkit](https://runkit.com/awfulaxolotl/a-quick-bite-of-tastes/1.0.1)
+
+```js
+// 1. Define the variables we want to play with
+import { integer, record } from 'tastes'
+
+const hue = integer({ min: 0, max: 360 })
+const poster = record({
+  fgHue: hue,
+  bgHue: hue,
+  headerPt: integer({ min: 20, max: 32 }),
+  bodyPt: integer({ min: 12, max: 20 }),
+})
+
+// 2. We can checkout the specific poster design at
+//    `(0.4, 0.2, 0.75, 0)` in the sample space.
+console.log(poster([0.4, 0.2, 0.75, 0]))
+
+// 3. But that's too manual. Let's just ask for 30 random
+//    sample poster designs.
+import { sampleRandom, take } from 'tastes'
+
+for (const s of take(30, sampleRandom(poster))) {
+  console.log(s)
+}
+
+// 4. But random designs may not be the best examples.
+//    Let's check out carefully selected "representative"
+//    samples instead.
+import { sampleBatch } from 'tastes'
+
+// Use detail of order 3
+for (const s of sampleBatch(poster, 3)) {
+  // `console.log` is used in abscence of
+  // a proper rendering function
+  console.log(s)
+}
 ```
 
 ## Examples
